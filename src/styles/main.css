@@ -1,0 +1,356 @@
+@import url("https://fonts.googleapis.com/css2?family=Water+Brush&display=swap");
+
+:root {
+    /* Colors */
+    --bg-color: #FAF9F6;
+    --text-primary: #1a1a1a;
+    --text-secondary: #2a2a2a;
+    --accent-color: #C91445;
+    --button-bg: #1a1a1a;
+    --button-text: #FAF9F6;
+    --button-hover-bg: #2a2a2a;
+    --border-color: rgba(26, 26, 26, 0.1);
+
+    /* Spacing */
+    --spacing-1: 0.25rem;
+    --spacing-2: 0.5rem;
+    --spacing-3: 0.75rem;
+    --spacing-4: 1rem;
+    --spacing-6: 1.5rem;
+    --spacing-8: 2rem;
+    --spacing-9: 2.25rem;
+    --spacing-12: 3rem;
+    --spacing-16: 4rem;
+    --spacing-24: 6rem;
+
+    /* Fonts */
+    --font-heading: 'Water Brush', cursive;
+    --font-body: system-ui, -apple-system, sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--bg-color);
+    color: var(--text-primary);
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* Layout */
+.layout-container {
+    min-height: 100vh;
+    position: relative;
+    overflow: hidden;
+    background-color: var(--bg-color);
+}
+
+.paper-texture {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    background-size: cover;
+    background-position: center;
+    opacity: 0.15;
+    z-index: 0;
+}
+
+.blossoms-layer {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+}
+
+.content-layer {
+    position: relative;
+    z-index: 2;
+}
+
+/* TopNav */
+.top-nav {
+    position: fixed;
+    z-index: 100;
+    border-radius: 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    top: 2vh;
+    left: 6vw;
+    right: 6vw;
+    height: 6.6vh;
+    background: rgba(250, 249, 246, 0.25);
+    backdrop-filter: blur(5px) saturate(180%);
+    -webkit-backdrop-filter: blur(5px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+}
+
+.top-nav-logo-container {
+    display: flex;
+    align-items: center;
+    height: 100%;
+}
+
+.top-nav-logo {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+}
+
+.top-nav-items {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .top-nav-items {
+        display: flex;
+        align-items: center;
+        gap: 2rem;
+        /* space-x-8 */
+    }
+}
+
+/* SumiEImage */
+.sumi-e-image-wrapper {
+    position: fixed;
+    inset: 0;
+    height: 100vh;
+    z-index: 0;
+    flex-shrink: 0;
+}
+
+.sumi-e-image-inner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.sumi-e-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: left;
+    clip-path: inset(0 0 55% 0);
+}
+
+@media (min-width: 768px) {
+    .sumi-e-image-wrapper {
+        width: 55vw;
+        position: sticky;
+        top: 0;
+        position: relative;
+        /* md:relative override */
+        z-index: auto;
+    }
+}
+
+/* GlassPanel */
+.glass-panel {
+    position: relative;
+    z-index: 10;
+    border-radius: 1.5rem;
+    /* rounded-3xl */
+    padding: var(--spacing-12);
+    /* p-12 */
+    max-width: 42rem;
+    /* max-w-2xl */
+    width: 100%;
+    background: rgba(250, 249, 246, 0.25);
+    backdrop-filter: blur(5px) saturate(180%);
+    -webkit-backdrop-filter: blur(5px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+}
+
+/* App Layout */
+.app-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    position: relative;
+}
+
+@media (min-width: 768px) {
+    .app-container {
+        flex-direction: row;
+    }
+}
+
+.content-section {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-left: var(--spacing-9);
+    /* pl-9 */
+    padding-right: 6vw;
+    /* pr-[6vw] */
+    padding-top: var(--spacing-24);
+    /* py-24 */
+    padding-bottom: var(--spacing-24);
+    position: relative;
+    z-index: 10;
+    min-height: 100vh;
+    margin-top: 10vh;
+    min-width: 393px;
+}
+
+@media (min-width: 768px) {
+    .content-section {
+        width: auto;
+        margin-left: 55vw;
+        /* md:ml-[55vw] */
+        margin-top: 10vh;
+        /* md:mt-[10vh] */
+    }
+}
+
+.glass-panel-custom {
+    padding-top: 2vh;
+    max-width: none;
+}
+
+/* Typography & Elements */
+.space-y-12>*+* {
+    margin-top: var(--spacing-12);
+}
+
+.space-y-8>*+* {
+    margin-top: var(--spacing-8);
+}
+
+.space-y-6>*+* {
+    margin-top: var(--spacing-6);
+}
+
+.heading-xl {
+    font-size: 3rem;
+    /* text-5xl */
+    line-height: 1;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+    margin-bottom: var(--spacing-4);
+}
+
+.heading-lg {
+    font-size: 1.875rem;
+    /* text-3xl */
+    line-height: 1.2;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+}
+
+.heading-md {
+    font-size: 1.5rem;
+    /* text-2xl */
+    line-height: 1.33;
+    letter-spacing: -0.025em;
+    color: var(--text-primary);
+    font-family: var(--font-heading);
+}
+
+.heading-sm {
+    font-size: 1.25rem;
+    /* text-xl */
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-2);
+    opacity: 0.9;
+    font-weight: 500;
+}
+
+.separator {
+    height: 1px;
+    width: 6rem;
+    /* w-24 */
+    background-color: var(--accent-color);
+    margin-top: var(--spacing-6);
+    opacity: 0.6;
+}
+
+.text-body {
+    color: var(--text-secondary);
+    line-height: 1.625;
+    /* leading-relaxed */
+    opacity: 0.8;
+}
+
+.cta-section {
+    margin-top: var(--spacing-16);
+    padding-top: var(--spacing-8);
+    border-top: 1px solid var(--border-color);
+}
+
+.btn-primary {
+    padding: var(--spacing-3) var(--spacing-8);
+    background-color: var(--button-bg);
+    color: var(--button-text);
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    font-size: 1rem;
+    font-weight: 500;
+}
+
+.btn-primary:hover {
+    background-color: var(--button-hover-bg);
+}
+
+.mb-4 {
+    margin-bottom: var(--spacing-4);
+}
+
+.mb-6 {
+    margin-bottom: var(--spacing-6);
+}
+
+.mb-8 {
+    margin-bottom: var(--spacing-8);
+}
+
+/* Animation Utilities */
+.fade-in-enter {
+    opacity: 0;
+}
+
+.fade-in-enter-active {
+    opacity: 1;
+    transition: opacity 300ms;
+}
+
+.fade-in-exit {
+    opacity: 1;
+}
+
+.fade-in-exit-active {
+    opacity: 0;
+    transition: opacity 300ms;
+}
+
+/* Component Wrappers */
+.ink-splash-heading-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.falling-blossoms-container {
+    position: absolute;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.falling-blossom-wrapper {
+    position: absolute;
+}
+
+.falling-blossom-image {
+    width: 100%;
+    height: auto;
+}
