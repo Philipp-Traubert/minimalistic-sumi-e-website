@@ -97,7 +97,7 @@ body {
 }
 
 .top-nav-logo {
-    height: 100%;
+    height: 225%;
     width: auto;
     object-fit: contain;
 }
@@ -120,8 +120,14 @@ body {
     position: fixed;
     inset: 0;
     height: 100vh;
+    max-height: none;
+    overflow: visible;
     z-index: 0;
     flex-shrink: 0;
+    width: clamp(55vw, calc(30rem + 10vw), 100vw);
+    min-width: 800px;
+    max-width: none;
+    transition: width 0.35s ease;
 }
 
 .sumi-e-image-inner {
@@ -133,19 +139,25 @@ body {
 .sumi-e-image {
     width: 100%;
     height: 100%;
-    object-fit: cover;
-    object-position: left;
-    clip-path: inset(0 0 55% 0);
+    object-fit: contain;
+    object-position: top left;
+    transform-origin: top left;
+    transform: translateX(-4px) scale(0.84);
 }
 
 @media (min-width: 768px) {
     .sumi-e-image-wrapper {
-        width: 55vw;
-        position: sticky;
+        position: fixed;
         top: 0;
-        position: relative;
-        /* md:relative override */
-        z-index: auto;
+        left: 0;
+        height: 100vh;
+        max-height: none;
+        z-index: 0;
+        overflow: visible;
+    }
+ 
+    .sumi-e-image {
+        clip-path: none;
     }
 }
 
@@ -157,8 +169,7 @@ body {
     /* rounded-3xl */
     padding: var(--spacing-12);
     /* p-12 */
-    max-width: 42rem;
-    /* max-w-2xl */
+    max-width: 700px;
     width: 100%;
     background: rgba(250, 249, 246, 0.25);
     backdrop-filter: blur(5px) saturate(180%);
@@ -177,7 +188,7 @@ body {
 
 @media (min-width: 768px) {
     .app-container {
-        flex-direction: row;
+        display: block;
     }
 }
 
@@ -186,33 +197,38 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    padding-left: var(--spacing-9);
-    /* pl-9 */
-    padding-right: 6vw;
-    /* pr-[6vw] */
+    padding-left: clamp(var(--spacing-9), calc(1.5rem + 2vw), 6vw);
+    padding-right: clamp(var(--spacing-9), 6vw, 8vw);
     padding-top: var(--spacing-24);
-    /* py-24 */
     padding-bottom: var(--spacing-24);
     position: relative;
     z-index: 10;
     min-height: 100vh;
-    margin-top: 10vh;
+    margin-top: clamp(0px, calc((768px - 100vw) * 0.25), 12vh);
     min-width: 393px;
+    transition: margin-top 0.35s ease, padding-left 0.35s ease, padding-right 0.35s ease;
+}
+
+.content-section > * {
+    width: min(100%, clamp(320px, 65vw, 700px));
+    max-width: 100%;
+    transition: width 0.35s ease;
 }
 
 @media (min-width: 768px) {
     .content-section {
-        width: auto;
-        margin-left: 55vw;
-        /* md:ml-[55vw] */
-        margin-top: 10vh;
-        /* md:mt-[10vh] */
+        width: 100%;
+        justify-content: flex-end;
+        pointer-events: none;
+    }
+
+    .content-section > * {
+        pointer-events: auto;
     }
 }
 
 .glass-panel-custom {
     padding-top: 2vh;
-    max-width: none;
 }
 
 /* Typography & Elements */

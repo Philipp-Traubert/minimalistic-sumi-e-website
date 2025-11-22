@@ -1,6 +1,6 @@
 import { ReactNode } from 'react';
 import { FallingBlossoms } from './FallingBlossoms';
-import paperTexture from 'figma:asset/b67594e9b3c439245fdadadaacf25076d0420eda.png';
+import paperTexture from '../assets/b67594e9b3c439245fdadadaacf25076d0420eda.png';
 
 interface LayoutProps {
     children: ReactNode;

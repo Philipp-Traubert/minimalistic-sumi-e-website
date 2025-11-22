@@ -3,7 +3,7 @@ import { Layout } from './components/Layout';
 import { SumiEImage } from './components/SumiEImage';
 import { GlassPanel } from './components/GlassPanel';
 import { TopNav } from './components/TopNav';
-import cherryHeron from 'figma:asset/8cfb0e5f0d316e68bd46ca0ec126ba3f6183d08a.png';
+import sumiBranch from './assets/branch-transparent.png';
 
 export default function App() {
   return (
@@ -12,7 +12,7 @@ export default function App() {
       <div className="app-container">
         {/* Left Side - Sticky Image */}
         <SumiEImage
-          src={cherryHeron}
+          src={sumiBranch}
           alt="Cherry blossom branch in Sumi-e style"
         />
 
