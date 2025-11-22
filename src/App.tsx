@@ -25,7 +25,7 @@ export default function App() {
               <div>
                 <InkSplashHeading delay={0.2} className="mb-4">
                   <h1 className="heading-xl">
-                    Body Work & Healing Arts
+                    Lassen Sie endlich los, was ihr Körper schon zu lange trägt.
                   </h1>
                 </InkSplashHeading>
                 <div className="separator" />
@@ -34,9 +34,14 @@ export default function App() {
               {/* Introduction */}
               <div className="space-y-6">
                 <p className="text-body">
-                  Welcome to a sanctuary of tranquility and restoration. Our practice draws
-                  inspiration from ancient Eastern healing traditions, blending time-honored
-                  techniques with modern understanding of the body's innate wisdom.
+                  loslasszen ist Körperarbeit für den ganzen Menschen. Ganzheitliche,
+                  nicht-medizinische Begleitung für Menschen, die ihrem Körper bewusst begegnen
+                  und sich Zeit für echte Regeneration nehmen wollen.
+                </p>
+                <p className="text-body">
+                  Ich arbeite achtsam, fein und präsent über Berührung, Faszienarbeit und Atem.
+                  Jede Sitzung entsteht im Dialog mit dir – wir folgen dem, was dein Nervensystem
+                  gerade braucht, statt einem starren Ablauf.
                 </p>
               </div>
 
@@ -44,34 +49,32 @@ export default function App() {
               <div className="space-y-8 mt-16">
                 <InkSplashHeading delay={0.6}>
                   <h2 className="heading-lg">
-                    Our Approach
+                    Was dich in einer Sitzung erwartet
                   </h2>
                 </InkSplashHeading>
 
                 <div className="space-y-6 text-body">
                   <div>
-                    <h3 className="heading-sm">Mindful Touch</h3>
+                    <h3 className="heading-sm">Berührung mit Präsenz</h3>
                     <p className="leading-relaxed">
-                      Each session is tailored to your unique needs, honoring the connection
-                      between body, mind, and spirit. We create a space where healing can
-                      naturally unfold.
+                      Langsame Sequenzen, die tonisieren, entwirren und dir helfen, Spannung loszulassen.
+                      Du bleibst jederzeit handlungsfähig und darfst Grenzen klar benennen.
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="heading-sm">Restorative Balance</h3>
+                    <h3 className="heading-sm">Regulation über Atem & Faszien</h3>
                     <p className="leading-relaxed">
-                      Through gentle manipulation and energy work, we help release tension,
-                      improve circulation, and restore your body's natural balance and vitality.
+                      Wir nutzen Atemräume, fasziale Dehnungen und feine Impulse, damit dein Nervensystem
+                      neue Referenzen für Ruhe und Lebendigkeit speichern kann.
                     </p>
                   </div>
 
                   <div>
-                    <h3 className="heading-sm">Sacred Space</h3>
+                    <h3 className="heading-sm">Integration in deinen Alltag</h3>
                     <p className="leading-relaxed">
-                      Our practice environment embodies serenity and simplicity, allowing you
-                      to fully surrender to the healing experience and reconnect with your
-                      inner peace.
+                      Zum Abschluss findest du konkrete Mikro-Rituale für Zuhause, damit sich dein Körper
+                      auch zwischen den Sessions erinnern kann, wie Loslassen sich anfühlt.
                     </p>
                   </div>
                 </div>
@@ -81,15 +84,15 @@ export default function App() {
               <div className="cta-section">
                 <InkSplashHeading delay={1} className="mb-6">
                   <h2 className="heading-md">
-                    Begin Your Journey
+                    Lass uns ins Gespräch kommen
                   </h2>
                 </InkSplashHeading>
                 <p className="text-body mb-8">
-                  Experience the transformative power of intentional bodywork. Schedule a
-                  consultation to discover how we can support your path to wellness.
+                  Schreibe mir eine kurze Nachricht mit deinem Anliegen und zwei Terminvorschlägen.
+                  Ich melde mich zeitnah zurück und wir finden einen Raum, der für dich passt.
                 </p>
                 <button className="btn-primary">
-                  Book a Session
+                  Termin anfragen
                 </button>
               </div>
             </div>

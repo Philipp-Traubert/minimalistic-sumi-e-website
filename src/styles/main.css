@@ -1,15 +1,19 @@
-@import url("https://fonts.googleapis.com/css2?family=Water+Brush&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Kolker+Brush&family=Tenor+Sans&family=Water+Brush&display=swap");
 
 :root {
     /* Colors */
     --bg-color: #FAF9F6;
     --text-primary: #1a1a1a;
-    --text-secondary: #2a2a2a;
+    --text-secondary: #101010;
     --accent-color: #C91445;
     --button-bg: #1a1a1a;
     --button-text: #FAF9F6;
     --button-hover-bg: #2a2a2a;
     --border-color: rgba(26, 26, 26, 0.1);
+    --page-gutter: clamp(var(--spacing-9), calc(1.5rem + 2vw), 6vw);
+    --nav-gap-base: clamp(var(--spacing-6), calc(1.5vh + 0.5rem), var(--spacing-12));
+    --nav-gap: calc(var(--nav-gap-base) * 2);
+    --nav-height: clamp(56px, 6.6vh, 64px);
 
     /* Spacing */
     --spacing-1: 0.25rem;
@@ -24,7 +28,7 @@
     --spacing-24: 6rem;
 
     /* Fonts */
-    --font-heading: 'Water Brush', cursive;
+    --font-heading: 'Tenor Sans', serif;
     --font-body: system-ui, -apple-system, sans-serif;
 }
 
@@ -79,10 +83,10 @@ body {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    top: 2vh;
-    left: 6vw;
-    right: 6vw;
-    height: 6.6vh;
+    top: var(--nav-gap);
+    left: var(--page-gutter);
+    right: var(--page-gutter);
+    height: var(--nav-height);
     background: rgba(250, 249, 246, 0.25);
     backdrop-filter: blur(5px) saturate(180%);
     -webkit-backdrop-filter: blur(5px) saturate(180%);
@@ -120,29 +124,33 @@ body {
     position: fixed;
     inset: 0;
     height: 100vh;
+    aspect-ratio: 1 / 1;
+    width: auto;
     max-height: none;
+    max-width: none;
+    min-width: 0;
     overflow: visible;
     z-index: 0;
     flex-shrink: 0;
-    width: clamp(55vw, calc(30rem + 10vw), 100vw);
-    min-width: 800px;
-    max-width: none;
-    transition: width 0.35s ease;
+    transition: height 1.5s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 .sumi-e-image-inner {
     position: relative;
     width: 100%;
     height: 100%;
+    transform: translateY(-24px);
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .sumi-e-image {
     width: 100%;
     height: 100%;
-    object-fit: contain;
+    object-fit: cover;
     object-position: top left;
     transform-origin: top left;
-    transform: translateX(-4px) scale(0.84);
+    transform: translateX(-4px) scale(0.8);
+    transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 @media (min-width: 768px) {
@@ -163,6 +171,11 @@ body {
 
 /* GlassPanel */
 .glass-panel {
+    --tilt-x: 0deg;
+    --tilt-y: 0deg;
+    --float-x: 0px;
+    --float-y: 0px;
+    --content-z: 0px;
     position: relative;
     z-index: 10;
     border-radius: 1.5rem;
@@ -176,6 +189,43 @@ body {
     -webkit-backdrop-filter: blur(5px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+    transform-style: preserve-3d;
+    transform: perspective(1200px)
+        rotateX(var(--tilt-x))
+        rotateY(var(--tilt-y))
+        translateX(var(--float-x))
+        translateY(var(--float-y));
+    transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+        box-shadow 0.45s ease,
+        border 0.45s ease;
+}
+
+.glass-panel::after {
+    content: "";
+    position: absolute;
+    inset: 1px;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    background: radial-gradient(circle at top, rgba(255, 255, 255, 0.35), transparent 55%),
+        linear-gradient(120deg, rgba(201, 20, 69, 0.2), transparent 60%);
+    transition: opacity 0.45s ease;
+}
+
+.glass-panel.is-active {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18), 0 3px 12px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+.glass-panel.is-active::after {
+    opacity: 1;
+}
+
+.glass-panel-content {
+    position: relative;
+    z-index: 1;
+    transform-style: preserve-3d;
+    transform: translateZ(var(--content-z));
+    transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
 }
 
 /* App Layout */
@@ -195,23 +245,24 @@ body {
 .content-section {
     width: 100%;
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
-    padding-left: clamp(var(--spacing-9), calc(1.5rem + 2vw), 6vw);
-    padding-right: clamp(var(--spacing-9), 6vw, 8vw);
-    padding-top: var(--spacing-24);
+    padding-left: var(--page-gutter);
+    padding-right: var(--page-gutter);
+    padding-top: var(--nav-gap);
     padding-bottom: var(--spacing-24);
     position: relative;
     z-index: 10;
     min-height: 100vh;
-    margin-top: clamp(0px, calc((768px - 100vw) * 0.25), 12vh);
+    margin-top: calc(var(--nav-gap) + var(--nav-height));
     min-width: 393px;
     transition: margin-top 0.35s ease, padding-left 0.35s ease, padding-right 0.35s ease;
 }
 
 .content-section > * {
-    width: min(100%, clamp(320px, 65vw, 700px));
-    max-width: 100%;
+    width: 100%;
+    max-width: 700px;
+    margin-left: auto;
     transition: width 0.35s ease;
 }
 
@@ -220,6 +271,10 @@ body {
         width: 100%;
         justify-content: flex-end;
         pointer-events: none;
+    }
+
+    .content-section > * {
+        margin-left: auto;
     }
 
     .content-section > * {
@@ -244,13 +299,20 @@ body {
     margin-top: var(--spacing-6);
 }
 
+.kolker-brush-regular {
+    font-family: "Kolker Brush", cursive;
+    font-weight: 400;
+    font-style: normal;
+}
+
 .heading-xl {
-    font-size: 3rem;
+    font-size: clamp(2.5rem, calc(1.5rem + 3vw), 4rem);
     /* text-5xl */
-    line-height: 1;
-    letter-spacing: -0.025em;
+    line-height: 1.1;
+    letter-spacing: -0.0516em;
     color: var(--text-primary);
     font-family: var(--font-heading);
+    font-weight: 400;
     margin-bottom: var(--spacing-4);
 }
 
