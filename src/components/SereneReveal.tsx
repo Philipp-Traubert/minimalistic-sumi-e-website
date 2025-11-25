@@ -3,20 +3,31 @@ import { useEffect, useRef, useState } from 'react';
 
 interface SereneRevealProps {
     children: React.ReactNode;
+    /** Delay in milliseconds when element is already in viewport on mount */
     delay?: number;
+    /** Delay in milliseconds when element is revealed by scrolling (defaults to delay if not set) */
+    scrollDelay?: number;
     className?: string;
 }
 
 /**
  * SereneReveal combines InkSplashHeading and ScrollReveal behaviors
- * - If element is in viewport on mount: animates immediately (like InkSplashHeading)
- * - If element is below fold: waits for scroll (like ScrollReveal)
+ * - If element is in viewport on mount: animates immediately after `delay`
+ * - If element is below fold: waits for scroll, then animates after `scrollDelay`
  * Both cases use the same serene transition timing
  */
-export function SereneReveal({ children, delay = 0, className = '' }: SereneRevealProps) {
+export function SereneReveal({ 
+    children, 
+    delay = 0, 
+    scrollDelay,
+    className = '' 
+}: SereneRevealProps) {
     const [isVisible, setIsVisible] = useState(false);
     const [isInViewportOnMount, setIsInViewportOnMount] = useState(false);
     const elementRef = useRef<HTMLDivElement>(null);
+
+    // Use scrollDelay if provided, otherwise fall back to delay
+    const effectiveScrollDelay = scrollDelay !== undefined ? scrollDelay : delay;
 
     useEffect(() => {
         // Check if element is in viewport on mount
@@ -57,10 +68,10 @@ export function SereneReveal({ children, delay = 0, className = '' }: SereneReve
             (entries) => {
                 entries.forEach((entry) => {
                     if (entry.isIntersecting && !isVisible) {
-                        // Add delay before showing
+                        // Add scrollDelay before showing
                         setTimeout(() => {
                             setIsVisible(true);
-                        }, delay);
+                        }, effectiveScrollDelay);
                     }
                 });
             },
@@ -79,7 +90,7 @@ export function SereneReveal({ children, delay = 0, className = '' }: SereneReve
                 observer.unobserve(elementRef.current);
             }
         };
-    }, [delay, isVisible, isInViewportOnMount]);
+    }, [effectiveScrollDelay, isVisible, isInViewportOnMount]);
 
     return (
         <div ref={elementRef} className={className}>

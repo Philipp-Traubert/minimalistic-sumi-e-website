@@ -10,15 +10,23 @@ When building responsive interfaces, content might be:
 - **Above the fold** (visible on page load) on large screens
 - **Below the fold** (requires scrolling) on small screens
 
-Using separate components for these cases creates inconsistent experiences across different screen sizes. `SereneReveal` automatically adapts to the situation.
+Using separate components for these cases creates inconsistent experiences across different screen sizes. `SereneReveal` automatically adapts to the situation with independent delay controls for each scenario.
 
 ## How It Works
 
 ### Intelligent Detection
 On component mount, `SereneReveal`:
 1. Checks if the element is currently in the viewport
-2. If **YES**: Animates immediately (like `InkSplashHeading`)
-3. If **NO**: Sets up an IntersectionObserver and animates when scrolled into view (like `ScrollReveal`)
+2. If **YES**: Animates after `delay` milliseconds (like `InkSplashHeading`)
+3. If **NO**: Sets up an IntersectionObserver and animates after `scrollDelay` milliseconds when scrolled into view (like `ScrollReveal`)
+
+### Dual Delay System
+- **`delay`**: Used when element is already visible on page load
+- **`scrollDelay`**: Used when element is revealed by scrolling (optional, defaults to `delay`)
+
+This allows you to orchestrate different timing for:
+- Elements that appear immediately (can have longer delays for staggering)
+- Elements revealed by scroll (can have shorter delays for snappier feel)
 
 ### Animation Consistency
 Both scenarios use the **same animation parameters**:
@@ -29,53 +37,58 @@ Both scenarios use the **same animation parameters**:
 
 ## Usage
 
-### Basic Usage
+### Basic Usage (Single Delay)
 
 ```tsx
 import { SereneReveal } from './components/SereneReveal';
 
 function MyComponent() {
   return (
-    <SereneReveal>
-      <h2>This will animate beautifully</h2>
-      <p>Whether it's in viewport or not!</p>
+    <SereneReveal delay={300}>
+      <h2>Animates 300ms after detection (viewport or scroll)</h2>
     </SereneReveal>
   );
 }
 ```
 
-### With Delay
+### Dual Delay (Different for Viewport vs Scroll)
 
 ```tsx
-<SereneReveal delay={200}>
-  <div>Content with 200ms delay</div>
+<SereneReveal delay={800} scrollDelay={200}>
+  <h2>800ms delay if in viewport, 200ms if scrolled to</h2>
 </SereneReveal>
 ```
 
-### With Custom Classes
+**Use Case**: Content high on page gets longer delay (staggered with other elements), but if user scrolls directly there, it appears quickly without awkward waiting.
 
-```tsx
-<SereneReveal className="my-custom-class">
-  <div>Styled content</div>
-</SereneReveal>
-```
-
-### Multiple Elements with Staggered Delays
+### Staggered Viewport Animation
 
 ```tsx
 <div className="space-y-6">
-  <SereneReveal delay={100}>
-    <h3>First item</h3>
+  {/* These appear one after another if all in viewport */}
+  <SereneReveal delay={100} scrollDelay={0}>
+    <h3>First (100ms if in viewport, immediate if scrolled)</h3>
   </SereneReveal>
   
-  <SereneReveal delay={200}>
-    <h3>Second item</h3>
+  <SereneReveal delay={300} scrollDelay={100}>
+    <h3>Second (300ms if in viewport, 100ms if scrolled)</h3>
   </SereneReveal>
   
-  <SereneReveal delay={300}>
-    <h3>Third item</h3>
+  <SereneReveal delay={500} scrollDelay={200}>
+    <h3>Third (500ms if in viewport, 200ms if scrolled)</h3>
   </SereneReveal>
 </div>
+```
+
+### Quick Scroll Reveals
+
+```tsx
+{/* Fast response when scrolled to, but waits if already visible */}
+<SereneReveal delay={1000} scrollDelay={50}>
+  <div className="cta-section">
+    <button>Call to Action</button>
+  </div>
+</SereneReveal>
 ```
 
 ## Props
@@ -83,8 +96,56 @@ function MyComponent() {
 | Prop | Type | Default | Description |
 |------|------|---------|-------------|
 | `children` | `React.ReactNode` | required | Content to be revealed |
-| `delay` | `number` | `0` | Delay in milliseconds before animation starts |
+| `delay` | `number` | `0` | Delay in ms when element is in viewport on mount |
+| `scrollDelay` | `number` | `delay` | Delay in ms when element is revealed by scrolling (falls back to `delay` if not set) |
 | `className` | `string` | `''` | Additional CSS classes for the wrapper |
+
+## Delay Strategy Examples
+
+### Strategy 1: Staggered Top, Quick Scroll
+Perfect for hero sections and introductory content:
+
+```tsx
+// Hero section - staggered if visible
+<SereneReveal delay={0} scrollDelay={0}>
+  <h1>Welcome</h1>
+</SereneReveal>
+
+<SereneReveal delay={400} scrollDelay={100}>
+  <p>Subtitle</p>
+</SereneReveal>
+
+<SereneReveal delay={800} scrollDelay={200}>
+  <button>CTA</button>
+</SereneReveal>
+```
+
+### Strategy 2: Uniform Timing
+When you want consistent feel regardless of viewport:
+
+```tsx
+<SereneReveal delay={300}>
+  <div>Same delay for both cases</div>
+</SereneReveal>
+```
+
+### Strategy 3: Instant Scroll, Delayed Viewport
+For content that should appear quickly when scrolled to:
+
+```tsx
+<SereneReveal delay={600} scrollDelay={0}>
+  <article>Article content</article>
+</SereneReveal>
+```
+
+### Strategy 4: Progressive Delays
+Building anticipation on page load, snappy on scroll:
+
+```tsx
+<SereneReveal delay={200} scrollDelay={50}>Item 1</SereneReveal>
+<SereneReveal delay={400} scrollDelay={50}>Item 2</SereneReveal>
+<SereneReveal delay={600} scrollDelay={50}>Item 3</SereneReveal>
+```
 
 ## When to Use Which Component
 
@@ -92,17 +153,20 @@ function MyComponent() {
 - For **hero sections** that are always above the fold
 - For **main headings** that should animate immediately on page load
 - When you want a **guaranteed immediate animation**
+- When you need the classic ink splash aesthetic
 
 ### Use `SereneReveal`
 - For **content sections** that may or may not be initially visible
 - For **list items** in long pages
 - For **cards or panels** that appear at different scroll positions
-- When you want **adaptive behavior** based on viewport
+- When you want **adaptive behavior** with **independent delay control**
+- For most responsive content that works across screen sizes
 
 ### Use `ScrollReveal`
 - For **content definitely below the fold**
-- When you want **explicit scroll-triggered behavior**
+- When you want **explicit scroll-triggered behavior** only
 - For **gallery items** or **portfolio pieces**
+- When you don't need Framer Motion animations
 
 ## Technical Details
 
@@ -128,6 +192,17 @@ const inViewport = (
 );
 ```
 
+### Delay Logic
+
+```javascript
+// For viewport animation
+setTimeout(() => setIsVisible(true), delay);
+
+// For scroll animation
+const effectiveScrollDelay = scrollDelay !== undefined ? scrollDelay : delay;
+setTimeout(() => setIsVisible(true), effectiveScrollDelay);
+```
+
 ### Animation State Management
 
 - Uses `useState` for `isVisible` and `isInViewportOnMount`
@@ -142,12 +217,15 @@ const inViewport = (
 - ✅ IntersectionObserver is efficient (native browser API)
 - ✅ Uses Framer Motion's optimized animation system
 - ✅ Minimal re-renders with proper state management
+- ✅ Independent delay controls prevent awkward waiting times
 
 ### Best Practices
-1. **Don't overuse delays**: Keep delays under 500ms for snappy UX
-2. **Stagger sequential items**: Use incremental delays (100ms, 200ms, 300ms)
-3. **Group related content**: Wrap related items in one SereneReveal when appropriate
-4. **Test on mobile**: Ensure animations feel good on smaller viewports
+1. **Don't overuse delays**: Keep delays under 1000ms for snappy UX
+2. **Shorter scrollDelays**: Consider 0-200ms for scroll reveals
+3. **Longer delays for viewport**: Can use 400-800ms for staggered effects
+4. **Stagger sequential items**: Use incremental delays (100ms, 200ms, 300ms)
+5. **Group related content**: Wrap related items in one SereneReveal when appropriate
+6. **Test on mobile**: Ensure animations feel good on smaller viewports
 
 ## Animation Anatomy
 
@@ -177,23 +255,25 @@ This creates a smooth, calming animation that feels natural and unhurried.
 
 ## Examples from App.tsx
 
-### Section Heading (May or may not be in viewport)
+### Section Heading (Different timing for viewport vs scroll)
 ```tsx
-<SereneReveal delay={600}>
+<SereneReveal delay={600} scrollDelay={100}>
   <h2 className="heading-lg">Auf einen Blick</h2>
 </SereneReveal>
 ```
+- If visible on page load: 600ms delay (staggered with other content)
+- If scrolled to: 100ms delay (quick response)
 
-### Service Cards (Staggered animation)
+### Service Cards (Staggered in viewport, quick on scroll)
 ```tsx
-<SereneReveal delay={100}>
+<SereneReveal delay={100} scrollDelay={50}>
   <div>
     <h3 className="heading-sm">Service Title</h3>
     <p>Service description...</p>
   </div>
 </SereneReveal>
 
-<SereneReveal delay={200}>
+<SereneReveal delay={200} scrollDelay={50}>
   <div>
     <h3 className="heading-sm">Another Service</h3>
     <p>Another description...</p>
@@ -201,9 +281,9 @@ This creates a smooth, calming animation that feels natural and unhurried.
 </SereneReveal>
 ```
 
-### Call-to-Action Section
+### Call-to-Action Section (Longer wait if in viewport)
 ```tsx
-<SereneReveal delay={500}>
+<SereneReveal delay={500} scrollDelay={100}>
   <div className="cta-section">
     <h3>Ready to start?</h3>
     <GradientButton>Get Started</GradientButton>
@@ -218,6 +298,7 @@ This creates a smooth, calming animation that feels natural and unhurried.
 | Immediate animation | ✅ Always | ❌ Never | ✅ If in viewport |
 | Scroll-triggered | ❌ Never | ✅ Always | ✅ If below fold |
 | Adaptive behavior | ❌ No | ❌ No | ✅ Yes |
+| Dual delay system | ❌ No | ❌ No | ✅ Yes |
 | Framer Motion | ✅ Yes | ❌ No | ✅ Yes |
 | Best for | Hero sections | Below-fold content | Any content |
 
@@ -232,19 +313,47 @@ This creates a smooth, calming animation that feels natural and unhurried.
 - Adjust `rootMargin` in the IntersectionObserver options
 - Modify `threshold` value (currently 0.1 = 10% visible)
 
+### Delays feel wrong
+- Test both scenarios: refresh page vs scroll to element
+- Adjust `delay` for viewport case
+- Adjust `scrollDelay` for scroll case
+- Remember: shorter delays for scroll, longer for staggering
+
 ### Multiple animations at once feel chaotic
-- Increase delays between sequential items
+- Increase `delay` between sequential items
+- Keep `scrollDelay` consistent and short
 - Use 100-200ms increments for smooth staggering
 - Consider grouping related items in one SereneReveal
 
-## Future Enhancements
+## Real-World Delay Recommendations
 
-Possible additions (not yet implemented):
-- Custom animation variants
-- Direction parameter (slide from left/right/top/bottom)
-- Duration customization
-- Trigger once vs. repeat on scroll
-- Custom easing curves
+### Hero Section (Always Visible)
+```tsx
+<SereneReveal delay={0}>Headline</SereneReveal>
+<SereneReveal delay={400}>Subtitle</SereneReveal>
+<SereneReveal delay={800}>CTA</SereneReveal>
+```
+
+### Content Section (May Be Visible)
+```tsx
+<SereneReveal delay={300} scrollDelay={100}>
+  Section heading
+</SereneReveal>
+```
+
+### List Items (Progressive Reveal)
+```tsx
+<SereneReveal delay={100} scrollDelay={0}>Item 1</SereneReveal>
+<SereneReveal delay={300} scrollDelay={50}>Item 2</SereneReveal>
+<SereneReveal delay={500} scrollDelay={100}>Item 3</SereneReveal>
+```
+
+### Footer Content
+```tsx
+<SereneReveal delay={1000} scrollDelay={0}>
+  Footer info
+</SereneReveal>
+```
 
 ## Credits
 

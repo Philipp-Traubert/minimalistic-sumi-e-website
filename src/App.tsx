@@ -34,13 +34,13 @@ export default function App() {
                 <div className="separator" />
               </div>
 
-              {/* Introduction - Uses SereneReveal (adapts to viewport) */}
+              {/* Introduction - Uses SereneReveal with dual delays */}
               <div className="space-y-6">
-                <SereneReveal delay={600}>
+                <SereneReveal delay={600} scrollDelay={100}>
                   <h2 className="heading-lg">Auf einen Blick
                   </h2>
                 </SereneReveal>
-                <SereneReveal delay={800}>
+                <SereneReveal delay={1000} scrollDelay={200}>
                   <div className="text-body">
                     <ul className="pl-6 list-bullet">
                       <li>Ganzheitliche, nicht-medizinische Körperarbeit in Eberswalde.</li>
@@ -54,16 +54,16 @@ export default function App() {
 
               </div>
 
-              {/* Services Section - Uses SereneReveal for scroll-based reveal */}
+              {/* Services Section - Staggered viewport delays, quick scroll reveals */}
               <div className="space-y-8 mt-16">
-                <SereneReveal delay={100}>
+                <SereneReveal delay={1400} scrollDelay={100}>
                   <h2 className="heading-lg">
                     Was Sie in einer Sitzung erwartet
                   </h2>
                 </SereneReveal>
 
                 <div className="space-y-6 text-body">
-                  <SereneReveal delay={100}>
+                  <SereneReveal delay={100} scrollDelay={50}>
                     <div>
                       <h3 className="heading-sm">Kurzes Ankommen und Einchecken</h3>
                       <p className="leading-relaxed">
@@ -73,7 +73,7 @@ export default function App() {
                     </div>
                   </SereneReveal>
 
-                  <SereneReveal delay={200}>
+                  <SereneReveal delay={200} scrollDelay={100}>
                     <div>
                       <h3 className="heading-sm">Nackenarbeit zur Entspannung</h3>
                       <p className="leading-relaxed">
@@ -82,7 +82,7 @@ export default function App() {
                     </div>
                   </SereneReveal>
 
-                  <SereneReveal delay={300}>
+                  <SereneReveal delay={300} scrollDelay={150}>
                     <div>
                       <h3 className="heading-sm">Ihre Individuell angepasste Sitzung</h3>
                       <p className="leading-relaxed">
@@ -91,7 +91,7 @@ export default function App() {
                     </div>
                   </SereneReveal>
 
-                  <SereneReveal delay={400}>
+                  <SereneReveal delay={400} scrollDelay={200}>
                     <div>
                       <h3 className="heading-sm">Integration in Ihren Körper</h3>
                       <p className="leading-relaxed">
@@ -102,8 +102,8 @@ export default function App() {
                 </div>
               </div>
 
-              {/* Call to Action */}
-              <SereneReveal delay={500}>
+              {/* Call to Action - Longer delay if in viewport, quick if scrolled */}
+              <SereneReveal delay={500} scrollDelay={100}>
                 <div className="cta-section">
                   <h3 className="heading-sm mb-6">
                     Fangen Sie jetzt and loszulasszen
