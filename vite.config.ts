@@ -1,12 +1,8 @@
-import { defineConfig } from 'vite';
+import { defineConfig, splitVendorChunkPlugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import path from 'path';
 export default defineConfig({
-  plugins: [react({
-    babel: {
-      plugins: ['@onlook/babel-plugin-react']
-    }
-  })],
+  plugins: [react(), splitVendorChunkPlugin()],
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {

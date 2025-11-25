@@ -12,7 +12,7 @@
       @import url("https://fonts.googleapis.com/css2?family=Kolker+Brush&family=Tenor+Sans&family=Water+Brush&display=swap");
 
       :root {
-        --bg-color: #faf9f6;
+        --bg-color: #ffffff;
         --text-primary: #1a1a1a;
         --text-secondary: #101010;
         --accent-color: #c91445;
@@ -24,6 +24,7 @@
         --nav-gap-base: clamp(1.5rem, calc(1.5vh + 0.5rem), 3rem);
         --nav-gap: calc(var(--nav-gap-base) * 2);
         --nav-height: clamp(56px, 6.6vh, 64px);
+        --layout-max-width: 1920px;
         --spacing-1: 0.25rem;
         --spacing-2: 0.5rem;
         --spacing-3: 0.75rem;
@@ -35,7 +36,19 @@
         --spacing-16: 4rem;
         --spacing-24: 6rem;
         --font-heading: "Tenor Sans", serif;
-        --font-body: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        --font-body: "Tenor Sans", serif;
+      }
+
+      @property --angle {
+        syntax: "<angle>";
+        initial-value: 0deg;
+        inherits: false;
+      }
+
+      @media (max-width: 768px) {
+        :root {
+          --page-gutter: var(--spacing-4);
+        }
       }
 
       * {
@@ -60,6 +73,7 @@
 
       button {
         font: inherit;
+        background: none;
       }
 
       .layout-container {
@@ -67,13 +81,19 @@
         position: relative;
         overflow: hidden;
         background-color: var(--bg-color);
+        width: 100%;
+        max-width: var(--layout-max-width);
+        margin: 0 auto;
+        isolation: isolate;
       }
 
       .paper-texture {
         position: fixed;
         inset: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
         pointer-events: none;
-        background-image: url("src/assets/b67594e9b3c439245fdadadaacf25076d0420eda.png");
         background-size: cover;
         background-position: center;
         opacity: 0.15;
@@ -83,16 +103,11 @@
       .blossoms-layer {
         position: fixed;
         inset: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        max-width: var(--layout-max-width);
         pointer-events: none;
-        overflow: hidden;
-      }
-
-      .blossoms-layer[data-layer="back"] {
-        z-index: 1;
-      }
-
-      .blossoms-layer[data-layer="front"] {
-        z-index: 3;
       }
 
       .content-layer {
@@ -103,27 +118,32 @@
       .top-nav {
         position: fixed;
         z-index: 100;
-        border-radius: 1.5rem;
+        border-radius: 999px;
         display: flex;
         align-items: center;
         justify-content: space-between;
         top: var(--nav-gap);
-        left: var(--page-gutter);
-        right: var(--page-gutter);
+        left: 50%;
+        transform: translateX(-50%);
+        width: calc(100vw - (var(--page-gutter) * 2));
+        max-width: calc(var(--layout-max-width) - (var(--page-gutter) * 2));
         height: var(--nav-height);
+        padding: 0 var(--spacing-6);
         background: rgba(250, 249, 246, 0.25);
         backdrop-filter: blur(5px) saturate(180%);
         -webkit-backdrop-filter: blur(5px) saturate(180%);
         border: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 rgba(0, 0, 0, 0.05),
+        box-shadow:
+          0 8px 32px 0 rgba(0, 0, 0, 0.1),
+          0 2px 8px 0 rgba(0, 0, 0, 0.05),
           inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
-        padding: 0 var(--spacing-6);
       }
 
       .top-nav-logo-container {
         display: flex;
         align-items: center;
         height: 100%;
+        padding-block: 0.15rem;
       }
 
       .top-nav-logo {
@@ -135,6 +155,101 @@
       .top-nav-items {
         display: none;
       }
+      .top-nav-cta-container {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        height: 100%;
+      }
+
+      .top-nav-cta-container .glass-button-wrap {
+        min-width: 220px;
+      }
+      .glass-button-wrap {
+        position: relative;
+        padding: 0.15rem;
+        border-radius: 999px;
+        background: rgba(250, 249, 246, 0.3);
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        box-shadow:
+          0 10px 30px rgba(0, 0, 0, 0.12),
+          inset 0 1px 0 rgba(255, 255, 255, 0.4);
+      }
+
+      .glass-button {
+        position: relative;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        border-radius: 999px;
+        padding: 0;
+        border: 1px solid rgba(255, 255, 255, 0.35);
+        background: linear-gradient(180deg, rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.15));
+        color: var(--text-primary);
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        overflow: hidden;
+        transition: transform 0.35s ease, box-shadow 0.35s ease;
+      }
+
+      .glass-button::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: linear-gradient(135deg, rgba(201, 20, 69, 0.85), rgba(255, 255, 255, 0.08) 70%);
+        opacity: 0;
+        transition: opacity 0.4s ease;
+        z-index: 0;
+      }
+
+      .glass-button::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(circle at top, rgba(255, 255, 255, 0.65), transparent 60%);
+        opacity: 0.85;
+        pointer-events: none;
+        z-index: 0;
+      }
+
+      .glass-button-text {
+        position: relative;
+        z-index: 1;
+        color: var(--text-primary);
+      }
+
+      .glass-button:hover {
+        transform: translateY(-1px);
+        box-shadow: 0 18px 40px rgba(201, 20, 69, 0.25);
+      }
+
+      .glass-button:hover::before {
+        opacity: 0.85;
+      }
+
+      .glass-button:hover .glass-button-text {
+        color: var(--button-text);
+      }
+
+      .glass-button-shadow {
+        position: absolute;
+        inset: auto 12% -12px 12%;
+        height: 18px;
+        background: radial-gradient(circle, rgba(201, 20, 69, 0.45), transparent 65%);
+        filter: blur(12px);
+        opacity: 0.8;
+        transition: opacity 0.35s ease, filter 0.35s ease;
+      }
+
+      .glass-button-wrap:hover .glass-button-shadow {
+        opacity: 1;
+        filter: blur(18px);
+      }
+
+
+
+
 
       @media (min-width: 768px) {
         .top-nav-items {
@@ -147,11 +262,13 @@
       .sumi-e-image-wrapper {
         position: fixed;
         inset: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100vw;
+        max-width: var(--layout-max-width);
         height: 100vh;
         aspect-ratio: 1 / 1;
-        width: auto;
         max-height: none;
-        max-width: none;
         min-width: 0;
         overflow: visible;
         z-index: 0;
@@ -163,6 +280,9 @@
         position: relative;
         width: 100%;
         height: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
         transform: translateY(-24px);
         transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
       }
@@ -170,76 +290,19 @@
       .sumi-e-image {
         width: 100%;
         height: 100%;
-        object-fit: cover;
-        object-position: top left;
-        transform-origin: top left;
-        transform: translateX(-4px) scale(0.8);
+        min-width: 1300px;
+        max-width: none;
+        object-fit: contain;
+        object-position: left center;
+        transform-origin: left center;
+        transform: scale(0.9);
         transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
       }
 
       @media (min-width: 768px) {
         .sumi-e-image-wrapper {
-          position: fixed;
-          top: 0;
-          left: 0;
-          height: 100vh;
-          max-height: none;
-          z-index: 0;
-          overflow: visible;
-        }
-
-        .sumi-e-image {
-          clip-path: none;
-        }
-      }
-
-      .app-container {
-        display: flex;
-        flex-direction: column;
-        min-height: 100vh;
-        position: relative;
-      }
-
-      @media (min-width: 768px) {
-        .app-container {
-          display: block;
-        }
-      }
-
-      .content-section {
-        width: 100%;
-        display: flex;
-        align-items: flex-start;
-        justify-content: center;
-        padding-left: var(--page-gutter);
-        padding-right: var(--page-gutter);
-        padding-top: var(--nav-gap);
-        padding-bottom: var(--spacing-24);
-        position: relative;
-        z-index: 10;
-        min-height: 100vh;
-        margin-top: calc(var(--nav-gap) + var(--nav-height));
-        min-width: 393px;
-        transition: margin-top 0.35s ease, padding-left 0.35s ease, padding-right 0.35s ease;
-      }
-
-      .content-section > * {
-        width: 100%;
-        max-width: 700px;
-        margin-left: auto;
-        transition: width 0.35s ease;
-      }
-
-      @media (min-width: 768px) {
-        .content-section {
-          width: 100%;
-          justify-content: flex-end;
-          pointer-events: none;
-        }
-
-        .content-section > * {
-          margin-left: auto;
-          pointer-events: auto;
+          left: 50%;
+          transform: translateX(-50%);
         }
       }
 
@@ -259,12 +322,20 @@
         backdrop-filter: blur(5px) saturate(180%);
         -webkit-backdrop-filter: blur(5px) saturate(180%);
         border: 1px solid rgba(255, 255, 255, 0.3);
-        box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 rgba(0, 0, 0, 0.05),
+        box-shadow:
+          0 8px 32px 0 rgba(0, 0, 0, 0.1),
+          0 2px 8px 0 rgba(0, 0, 0, 0.05),
           inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
         transform-style: preserve-3d;
-        transform: perspective(1200px) rotateX(var(--tilt-x)) rotateY(var(--tilt-y))
-          translateX(var(--float-x)) translateY(var(--float-y));
-        transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1), box-shadow 0.45s ease,
+        transform:
+          perspective(1200px)
+          rotateX(var(--tilt-x))
+          rotateY(var(--tilt-y))
+          translateX(var(--float-x))
+          translateY(var(--float-y));
+        transition:
+          transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1),
+          box-shadow 0.45s ease,
           border 0.45s ease;
       }
 
@@ -275,13 +346,14 @@
         border-radius: inherit;
         pointer-events: none;
         opacity: 0;
-        background: radial-gradient(circle at top, rgba(255, 255, 255, 0.35), transparent 55%),
-          linear-gradient(120deg, rgba(201, 20, 69, 0.2), transparent 60%);
+        background: radial-gradient(circle at top, rgba(255, 255, 255, 0.35), transparent 55%);
         transition: opacity 0.45s ease;
       }
 
       .glass-panel.is-active {
-        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.18), 0 3px 12px rgba(0, 0, 0, 0.12),
+        box-shadow:
+          0 10px 40px rgba(0, 0, 0, 0.18),
+          0 3px 12px rgba(0, 0, 0, 0.12),
           inset 0 1px 0 rgba(255, 255, 255, 0.5);
       }
 
@@ -295,6 +367,61 @@
         transform-style: preserve-3d;
         transform: translateZ(var(--content-z));
         transition: transform 0.45s cubic-bezier(0.22, 0.61, 0.36, 1);
+      }
+
+      .app-container {
+        display: flex;
+        flex-direction: column;
+        min-height: 100vh;
+        position: relative;
+      }
+
+      @media (min-width: 768px) {
+        .app-container {
+          display: block;
+        }
+      }
+
+      .content-section {
+        width: 100%;
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        padding-left: var(--page-gutter);
+        padding-right: var(--page-gutter);
+        padding-top: var(--nav-gap);
+        padding-bottom: var(--spacing-24);
+        position: relative;
+        z-index: 10;
+        min-height: 100vh;
+        margin-top: calc(var(--nav-gap) + var(--nav-height));
+        min-width: 393px;
+        transition:
+          margin-top 0.35s ease,
+          padding-left 0.35s ease,
+          padding-right 0.35s ease;
+      }
+
+      .content-section > * {
+        width: 100%;
+        max-width: 700px;
+        margin-left: 0;
+        margin-right: 0;
+        transition: width 0.35s ease;
+      }
+
+      @media (min-width: 768px) {
+        .content-section {
+          width: 100%;
+          justify-content: flex-end;
+          pointer-events: none;
+        }
+
+        .content-section > * {
+          margin-left: auto;
+          margin-right: 0;
+          pointer-events: auto;
+        }
       }
 
       .glass-panel-custom {
@@ -317,17 +444,10 @@
         margin-top: var(--spacing-16);
       }
 
-      .mb-4 {
-        margin-bottom: var(--spacing-4);
+      .leading-relaxed {
+        line-height: 1.625;
       }
 
-      .mb-6 {
-        margin-bottom: var(--spacing-6);
-      }
-
-      .mb-8 {
-        margin-bottom: var(--spacing-8);
-      }
 
       .heading-xl {
         font-size: clamp(2.5rem, calc(1.5rem + 3vw), 4rem);
@@ -340,11 +460,13 @@
       }
 
       .heading-lg {
-        font-size: 1.875rem;
-        line-height: 1.2;
-        letter-spacing: -0.025em;
+        font-size: clamp(1.75rem, calc(1.25rem + 1.2vw), 2.5rem);
+        line-height: 1.4;
+        letter-spacing: -0.02em;
         color: var(--text-primary);
         font-family: var(--font-heading);
+        font-weight: 500;
+        margin-bottom: var(--spacing-3);
       }
 
       .heading-md {
@@ -363,22 +485,18 @@
         font-weight: 500;
       }
 
-      .text-body {
-        color: var(--text-secondary);
-        line-height: 1.625;
-        opacity: 0.8;
-      }
-
-      .leading-relaxed {
-        line-height: 1.625;
-      }
-
       .separator {
         height: 1px;
         width: 6rem;
         background-color: var(--accent-color);
         margin-top: var(--spacing-6);
         opacity: 0.6;
+      }
+
+      .text-body {
+        color: var(--text-secondary);
+        line-height: 1.625;
+        opacity: 0.8;
       }
 
       .cta-section {
@@ -402,17 +520,32 @@
         background-color: var(--button-hover-bg);
       }
 
-      .ink-splash-heading {
+      .mb-4 {
+        margin-bottom: var(--spacing-4);
+      }
+
+      .mb-6 {
+        margin-bottom: var(--spacing-6);
+      }
+
+      .mb-8 {
+        margin-bottom: var(--spacing-8);
+      }
+
+      .ink-splash-heading-wrapper {
         position: relative;
         display: inline-block;
         overflow: hidden;
       }
 
-      .ink-splash-heading > * {
+      .ink-splash-heading-wrapper > * {
         opacity: 0;
         transform: translateY(12px);
+      }
+
+      .ink-splash-heading-wrapper.is-visible > * {
         animation: fadeUp 0.8s cubic-bezier(0.23, 1, 0.32, 1) forwards;
-        animation-delay: calc(var(--delay, 0s) + 0.3s);
+        animation-delay: var(--ink-delay, 0.3s);
       }
 
       @keyframes fadeUp {
@@ -422,10 +555,24 @@
         }
       }
 
-      .falling-blossom {
+      .falling-blossoms-container {
         position: absolute;
-        will-change: transform, opacity;
+        inset: 0;
+        overflow: hidden;
         pointer-events: none;
+      }
+
+      .falling-blossom-wrapper {
+        position: absolute;
+        width: 30px;
+        height: auto;
+        transform-style: preserve-3d;
+      }
+
+      .falling-blossom-inner {
+        width: 100%;
+        height: auto;
+        transform-style: preserve-3d;
       }
 
       .falling-blossom-image {
@@ -436,24 +583,43 @@
       }
 
       @media (prefers-reduced-motion: reduce) {
-        .ink-splash-heading > * {
-          animation: none;
-          opacity: 1;
-          transform: none;
+
+        .glass-panel,
+        .glass-panel-content,
+        .ink-splash-heading-wrapper > * {
+          transition: none !important;
+          animation: none !important;
         }
       }
     </style>
   </head>
   <body>
     <div class="layout-container">
-      <div class="paper-texture" aria-hidden="true"></div>
-      <div class="blossoms-layer" data-layer="back" aria-hidden="true"></div>
+      <div
+        class="paper-texture"
+        aria-hidden="true"
+        style="background-image: url('src/assets/b67594e9b3c439245fdadadaacf25076d0420eda.png')"
+      ></div>
+
+      <div class="blossoms-layer" aria-hidden="true" data-layer="back">
+        <div class="falling-blossoms-container" data-layer="back"></div>
+      </div>
+
       <div class="content-layer">
         <nav class="top-nav" aria-label="Hauptnavigation">
           <div class="top-nav-logo-container">
-            <img src="src/assets/logo.png" alt="loslasszen Logo" class="top-nav-logo" />
+            <img src="src/assets/logo.png" alt="Loslassen Logo" class="top-nav-logo" />
           </div>
           <div class="top-nav-items" aria-hidden="true"></div>
+          <div class="top-nav-cta-container">
+            <div class="glass-button-wrap">
+              <button class="glass-button" type="button">
+                <span class="glass-button-text">Termin Online Buchen</span>
+              </button>
+              <div class="glass-button-shadow" aria-hidden="true"></div>
+            </div>
+          </div>
+
         </nav>
 
         <div class="app-container">
@@ -461,7 +627,7 @@
             <div class="sumi-e-image-inner">
               <img
                 src="src/assets/branch-transparent.png"
-                alt="Kirschblütenzweig in Sumi-e"
+                alt="Cherry blossom branch in Sumi-e style"
                 class="sumi-e-image"
               />
             </div>
@@ -472,27 +638,26 @@
               <div class="glass-panel-content">
                 <div class="space-y-12">
                   <div>
-                    <div class="ink-splash-heading mb-4" style="--delay: 0.2s">
+                    <div class="ink-splash-heading-wrapper mb-4" data-delay="0.2">
                       <h1 class="heading-xl">Lassen Sie endlich los, was ihr Körper schon zu lange trägt.</h1>
                     </div>
                     <div class="separator" aria-hidden="true"></div>
                   </div>
 
                   <div class="space-y-6">
-                    <p class="text-body">
-                      loslasszen ist Körperarbeit für den ganzen Menschen. Ganzheitliche,
-                      nicht-medizinische Begleitung für Menschen, die ihrem Körper bewusst begegnen
-                      und sich Zeit für echte Regeneration nehmen wollen.
-                    </p>
-                    <p class="text-body">
-                      Ich arbeite achtsam, fein und präsent über Berührung, Faszienarbeit und Atem.
-                      Jede Sitzung entsteht im Dialog mit dir – wir folgen dem, was dein Nervensystem
-                      gerade braucht, statt einem starren Ablauf.
-                    </p>
+                    <div class="ink-splash-heading-wrapper" data-delay="0.4">
+                      <h2 class="heading-lg">Achtsam und präsent durch Berührung und Atem loslasszen.</h2>
+                    </div>
+                    <div class="ink-splash-heading-wrapper" data-delay="0.6">
+                      <p class="text-body">
+                        Jede Sitzung entsteht im Dialog mit Ihnen – wir folgen dem, was Sie gerade brauchen, statt
+                        einem starren Ablauf.
+                      </p>
+                    </div>
                   </div>
 
                   <div class="space-y-8 mt-16">
-                    <div class="ink-splash-heading" style="--delay: 0.6s">
+                    <div class="ink-splash-heading-wrapper" data-delay="0.8">
                       <h2 class="heading-lg">Was dich in einer Sitzung erwartet</h2>
                     </div>
 
@@ -500,36 +665,36 @@
                       <div>
                         <h3 class="heading-sm">Berührung mit Präsenz</h3>
                         <p class="leading-relaxed">
-                          Langsame Sequenzen, die tonisieren, entwirren und dir helfen, Spannung loszulassen.
-                          Du bleibst jederzeit handlungsfähig und darfst Grenzen klar benennen.
+                          Langsame Sequenzen, die tonisieren, entwirren und dir helfen, Spannung loszulassen. Du
+                          bleibst jederzeit handlungsfähig und darfst Grenzen klar benennen.
                         </p>
                       </div>
 
                       <div>
                         <h3 class="heading-sm">Regulation über Atem & Faszien</h3>
                         <p class="leading-relaxed">
-                          Wir nutzen Atemräume, fasziale Dehnungen und feine Impulse, damit dein Nervensystem
-                          neue Referenzen für Ruhe und Lebendigkeit speichern kann.
+                          Wir nutzen Atemräume, fasziale Dehnungen und feine Impulse, damit dein Nervensystem neue
+                          Referenzen für Ruhe und Lebendigkeit speichern kann.
                         </p>
                       </div>
 
                       <div>
                         <h3 class="heading-sm">Integration in deinen Alltag</h3>
                         <p class="leading-relaxed">
-                          Zum Abschluss findest du konkrete Mikro-Rituale für Zuhause, damit sich dein Körper
-                          auch zwischen den Sessions erinnern kann, wie Loslassen sich anfühlt.
+                          Zum Abschluss findest du konkrete Mikro-Rituale für Zuhause, damit sich dein Körper auch
+                          zwischen den Sessions erinnern kann, wie Loslassen sich anfühlt.
                         </p>
                       </div>
                     </div>
                   </div>
 
                   <div class="cta-section">
-                    <div class="ink-splash-heading mb-6" style="--delay: 1s">
+                    <div class="ink-splash-heading-wrapper mb-6" data-delay="1">
                       <h2 class="heading-md">Lass uns ins Gespräch kommen</h2>
                     </div>
                     <p class="text-body mb-8">
-                      Schreibe mir eine kurze Nachricht mit deinem Anliegen und zwei Terminvorschlägen.
-                      Ich melde mich zeitnah zurück und wir finden einen Raum, der für dich passt.
+                      Schreibe mir eine kurze Nachricht mit deinem Anliegen und zwei Terminvorschlägen. Ich melde mich
+                      zeitnah zurück und wir finden einen Raum, der für dich passt.
                     </p>
                     <button class="btn-primary" type="button">Termin anfragen</button>
                   </div>
@@ -539,48 +704,80 @@
           </div>
         </div>
       </div>
-      <div class="blossoms-layer" data-layer="front" aria-hidden="true"></div>
+
+      <div class="blossoms-layer" aria-hidden="true" data-layer="front">
+        <div class="falling-blossoms-container" data-layer="front"></div>
+      </div>
     </div>
 
     <script>
-      (() => {
-        const panel = document.querySelector('.glass-panel');
+      document.addEventListener('DOMContentLoaded', () => {
+        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-        const resetTilt = () => {
-          if (!panel) return;
-          panel.style.setProperty('--tilt-x', '0deg');
-          panel.style.setProperty('--tilt-y', '0deg');
-          panel.style.setProperty('--float-x', '0px');
-          panel.style.setProperty('--float-y', '0px');
-          panel.style.setProperty('--content-z', '0px');
-          panel.classList.remove('is-active');
-        };
+        const glassPanel = document.querySelector('.glass-panel');
+        if (glassPanel) {
+          const resetTilt = () => {
+            glassPanel.style.setProperty('--tilt-x', '0deg');
+            glassPanel.style.setProperty('--tilt-y', '0deg');
+            glassPanel.style.setProperty('--float-x', '0px');
+            glassPanel.style.setProperty('--float-y', '0px');
+            glassPanel.style.setProperty('--content-z', '0px');
+            glassPanel.classList.remove('is-active');
+          };
 
-        const handlePointerMove = (event) => {
-          if (!panel) return;
-          const rect = panel.getBoundingClientRect();
-          const x = event.clientX - rect.left;
-          const y = event.clientY - rect.top;
-          const percentX = x / rect.width - 0.5;
-          const percentY = y / rect.height - 0.5;
+          const handlePointerMove = (event) => {
+            const rect = glassPanel.getBoundingClientRect();
+            const x = event.clientX - rect.left;
+            const y = event.clientY - rect.top;
+            const percentX = x / rect.width - 0.5;
+            const percentY = y / rect.height - 0.5;
 
-          panel.style.setProperty('--tilt-x', `${percentY * -6}deg`);
-          panel.style.setProperty('--tilt-y', `${percentX * 6}deg`);
-          panel.style.setProperty('--float-x', `${percentX * 10}px`);
-          panel.style.setProperty('--float-y', `${percentY * 10}px`);
-        };
+            glassPanel.style.setProperty('--tilt-x', `${percentY * 2}deg`);
+            glassPanel.style.setProperty('--tilt-y', `${percentX * -2}deg`);
+            glassPanel.style.setProperty('--float-x', `${percentX * -4}px`);
+            glassPanel.style.setProperty('--float-y', `${percentY * -4}px`);
+          };
 
-        if (panel) {
-          panel.addEventListener('pointerenter', () => {
-            panel.classList.add('is-active');
-            panel.style.setProperty('--content-z', '32px');
+          glassPanel.addEventListener('pointerenter', () => {
+            glassPanel.classList.add('is-active');
+            glassPanel.style.setProperty('--content-z', '16px');
           });
-          panel.addEventListener('pointerleave', resetTilt);
-          panel.addEventListener('pointermove', handlePointerMove);
+          glassPanel.addEventListener('pointerleave', resetTilt);
+          glassPanel.addEventListener('pointermove', handlePointerMove);
         }
 
-        const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        const inkHeadingWrappers = document.querySelectorAll('.ink-splash-heading-wrapper');
+        inkHeadingWrappers.forEach((wrapper) => {
+          const delay = Number(wrapper.dataset.delay || '0');
+          const totalDelay = Math.max(0, delay + 0.3);
+
+          const reveal = () => {
+            wrapper.style.setProperty('--ink-delay', `${totalDelay}s`);
+            wrapper.classList.add('is-visible');
+          };
+
+          if (prefersReducedMotion) {
+            wrapper.classList.add('is-visible');
+            wrapper.style.setProperty('--ink-delay', '0s');
+          } else {
+            setTimeout(reveal, totalDelay * 1000);
+          }
+        });
+
         if (prefersReducedMotion) {
+          const blossomContainers = document.querySelectorAll('.falling-blossoms-container');
+          blossomContainers.forEach((container) => {
+            const placeholder = document.createElement('div');
+            placeholder.style.position = 'absolute';
+            placeholder.style.inset = 'auto auto 10% 5%';
+            placeholder.style.width = '120px';
+            placeholder.style.height = '120px';
+            placeholder.style.opacity = '0.25';
+            placeholder.style.backgroundImage = "url('src/assets/falling-blossoms/blossom-3.png')";
+            placeholder.style.backgroundSize = 'contain';
+            placeholder.style.backgroundRepeat = 'no-repeat';
+            container.appendChild(placeholder);
+          });
           return;
         }
 
@@ -595,67 +792,95 @@
         const spawnBlossoms = (selector, count) => {
           const container = document.querySelector(selector);
           if (!container) return;
+          container.innerHTML = '';
 
           const fragment = document.createDocumentFragment();
           for (let i = 0; i < count; i++) {
             const wrapper = document.createElement('div');
-            wrapper.className = 'falling-blossom';
+            wrapper.className = 'falling-blossom-wrapper';
+
+            const inner = document.createElement('div');
+            inner.className = 'falling-blossom-inner';
+
             const img = document.createElement('img');
             img.className = 'falling-blossom-image';
             img.src = blossomImages[Math.floor(Math.random() * blossomImages.length)];
             img.alt = 'Schwebendes Blütenblatt';
-            wrapper.appendChild(img);
 
             const isOffScreen = Math.random() < 0.3;
             const startX = isOffScreen ? Math.random() * 15 - 15 : Math.random() * 40;
             const startY = 30.5 + Math.random() * 19.5;
-            const drift = 25 + Math.random() * 75;
-            const endX = startX + drift;
-            const endY = 115 + Math.random() * 15;
+            const angleDeg = 15 + Math.random() * 30;
+            const driftPercent = 25 + ((angleDeg - 15) / 30) * 75;
+            const endX = startX + driftPercent;
+            const endY = 120 + Math.random() * 10;
             const duration = 26000 + Math.random() * 14000;
             const delay = Math.random() * 15000;
             const scale = 0.45 + Math.random() * 0.55;
-            const midX = startX + drift * 0.45 + (Math.random() * 10 - 5);
+            const swayDuration = 4000 + Math.random() * 4000;
+            const rockingAmplitude = 30 + Math.random() * 30;
+            const rockingAmplitudeX = 25 + Math.random() * 25;
+            const fadeOutStart = 0.6 + Math.random() * 0.25;
+
+            wrapper.style.width = `${30 * scale}px`;
+
+            const midX = startX + driftPercent * 0.45 + (Math.random() * 10 - 5);
             const midY = startY + (endY - startY) * 0.4;
 
-            wrapper.style.width = `${28 * scale}px`;
-            fragment.appendChild(wrapper);
+            const driftKeyframes = [
+              { transform: `translate3d(${startX}vw, ${startY}vh, 0)`, opacity: 0, offset: 0 },
+              { transform: `translate3d(${midX}vw, ${midY}vh, 0)`, opacity: 1, offset: 0.1 },
+              { transform: `translate3d(${endX}vw, ${endY}vh, 0)`, opacity: 0, offset: fadeOutStart },
+              { transform: `translate3d(${endX}vw, ${endY}vh, 0)`, opacity: 0, offset: 1 }
+            ];
 
-            wrapper.animate(
+            wrapper.animate(driftKeyframes, {
+              duration,
+              delay,
+              iterations: Infinity,
+              easing: 'linear',
+              fill: 'both'
+            });
+
+            const swayAmplitude = 20 + Math.random() * 30;
+
+            inner.animate(
               [
-                { transform: `translate3d(${startX}vw, ${startY}vh, 0)`, opacity: 0 },
-                { transform: `translate3d(${midX}vw, ${midY}vh, 0)`, opacity: 1 },
-                { transform: `translate3d(${endX}vw, ${endY}vh, 0)`, opacity: 0 }
+                { transform: `translateX(-${swayAmplitude}px) rotateX(-${rockingAmplitudeX}deg) rotateY(-${rockingAmplitude}deg)` },
+                { transform: `translateX(${swayAmplitude}px) rotateX(${rockingAmplitudeX}deg) rotateY(${rockingAmplitude}deg)` }
               ],
               {
-                duration,
-                delay,
-                iterations: Infinity,
-                easing: 'linear'
-              }
-            );
-
-            img.animate(
-              [
-                { transform: 'rotate3d(1, 0, 0, 0deg) rotateZ(0deg)' },
-                { transform: 'rotate3d(1, 1, 0, 45deg) rotateZ(180deg)' },
-                { transform: 'rotate3d(1, 0, 0, 0deg) rotateZ(360deg)' }
-              ],
-              {
-                duration: 6000 + Math.random() * 4000,
+                duration: swayDuration,
                 iterations: Infinity,
                 direction: 'alternate',
                 easing: 'ease-in-out'
               }
             );
+
+            img.animate(
+              [
+                { transform: 'rotateZ(0deg)' },
+                { transform: 'rotateZ(180deg)' },
+                { transform: 'rotateZ(360deg)' }
+              ],
+              {
+                duration: duration * 1.5,
+                iterations: Infinity,
+                easing: 'linear'
+              }
+            );
+
+            inner.appendChild(img);
+            wrapper.appendChild(inner);
+            fragment.appendChild(wrapper);
           }
 
           container.appendChild(fragment);
         };
 
-        spawnBlossoms('[data-layer="back"]', 17);
-        spawnBlossoms('[data-layer="front"]', 10);
-      })();
+        spawnBlossoms(".falling-blossoms-container[data-layer='back']", 17);
+        spawnBlossoms(".falling-blossoms-container[data-layer='front']", 10);
+      });
     </script>
   </body>
 </html>
