@@ -268,6 +268,9 @@ body {
     background-position: center;
     opacity: 0.15;
     z-index: 0;
+    /* Force hardware acceleration for better backdrop-filter support */
+    will-change: transform;
+    transform: translateZ(0) translateX(-50%);
 }
 
 .blossoms-layer {
@@ -279,6 +282,9 @@ body {
     width: 100vw;
     max-width: var(--layout-max-width);
     pointer-events: none;
+    /* Force hardware acceleration */
+    will-change: transform;
+    transform: translateZ(0) translateX(-50%);
 }
 
 .content-layer {
@@ -301,10 +307,15 @@ body {
     max-width: calc(var(--layout-max-width) - (var(--page-gutter) * 2));
     height: var(--nav-height);
     background: rgba(250, 249, 246, 0.25);
-    backdrop-filter: blur(5px) saturate(180%);
-    -webkit-backdrop-filter: blur(5px) saturate(180%);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+    /* Fix for Chromium browsers - force hardware acceleration and proper stacking */
+    will-change: backdrop-filter;
+    transform: translate3d(-50%, 0, 0);
+    isolation: isolate;
+    contain: paint;
 }
 
 .top-nav-logo-container {
@@ -423,6 +434,9 @@ body {
     z-index: 0;
     flex-shrink: 0;
     transition: height 1.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+    /* Force hardware acceleration */
+    will-change: transform;
+    transform: translateZ(0) translateX(-50%);
 }
 
 .sumi-e-image-inner {
@@ -434,6 +448,9 @@ body {
     justify-content: flex-start;
     transform: translateY(-24px);
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Force hardware acceleration */
+    will-change: transform;
+    transform: translateZ(0) translateY(-24px);
 }
 
 .sumi-e-image {
@@ -446,6 +463,9 @@ body {
     transform-origin: left center;
     transform: scale(0.9);
     transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
+    /* Force hardware acceleration */
+    will-change: transform;
+    transform: translateZ(0) scale(0.9);
 }
 
 @media (min-width: 768px) {
@@ -458,6 +478,8 @@ body {
         max-height: none;
         z-index: 0;
         overflow: visible;
+        /* Keep hardware acceleration */
+        transform: translateZ(0) translateX(-50%);
     }
 
     .sumi-e-image {
@@ -465,7 +487,7 @@ body {
     }
 }
 
-/* GlassPanel */
+/* GlassPanel - Enhanced for cross-browser compatibility */
 .glass-panel {
     position: relative;
     z-index: 10;
@@ -476,11 +498,19 @@ body {
     max-width: 700px;
     width: 100%;
     background: rgba(250, 249, 246, 0.25);
-    backdrop-filter: blur(5px) saturate(180%);
-    -webkit-backdrop-filter: blur(5px) saturate(180%);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
     transition: box-shadow 0.45s ease, border 0.45s ease;
+    /* Critical fixes for Chromium and Firefox backdrop-filter support */
+    will-change: backdrop-filter;
+    transform: translate3d(0, 0, 0);
+    isolation: isolate;
+    contain: paint;
+    /* Ensure proper layering for backdrop-filter */
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .glass-panel::after {
@@ -797,7 +827,7 @@ body {
     transform: translateY(0);
 }
 
-/* Footer Glass */
+/* Footer Glass - Enhanced for cross-browser compatibility */
 .footer-glass {
     position: relative;
     z-index: 10;
@@ -805,10 +835,17 @@ body {
     padding: var(--spacing-8) var(--page-gutter);
     width: 100%;
     background: rgba(250, 249, 246, 0.25);
-    backdrop-filter: blur(5px) saturate(180%);
-    -webkit-backdrop-filter: blur(5px) saturate(180%);
+    backdrop-filter: blur(12px) saturate(180%);
+    -webkit-backdrop-filter: blur(12px) saturate(180%);
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 -4px 16px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+    /* Fix for Chromium browsers - force hardware acceleration and proper stacking */
+    will-change: backdrop-filter;
+    transform: translate3d(0, 0, 0);
+    isolation: isolate;
+    contain: paint;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
 }
 
 .footer-content {
