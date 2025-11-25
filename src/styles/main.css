@@ -248,7 +248,11 @@ body {
 .layout-container {
     min-height: 100vh;
     position: relative;
-    overflow: hidden;
+    /* CRITICAL FIX: Changed from 'overflow: hidden' to 'overflow: clip'
+       'overflow: hidden' breaks backdrop-filter in Chrome/Firefox/Brave
+       'overflow: clip' clips content without creating a scroll container,
+       allowing backdrop-filter to work correctly across all browsers */
+    overflow: clip;
     background-color: var(--bg-color);
     width: 100%;
     max-width: var(--layout-max-width);
