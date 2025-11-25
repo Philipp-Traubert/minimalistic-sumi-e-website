@@ -248,16 +248,11 @@ body {
 .layout-container {
     min-height: 100vh;
     position: relative;
-    /* CRITICAL FIX: Changed from 'overflow: hidden' to 'overflow: clip'
-       'overflow: hidden' breaks backdrop-filter in Chrome/Firefox/Brave
-       'overflow: clip' clips content without creating a scroll container,
-       allowing backdrop-filter to work correctly across all browsers */
     overflow: clip;
     background-color: var(--bg-color);
     width: 100%;
     max-width: var(--layout-max-width);
     margin: 0 auto;
-    isolation: isolate;
 }
 
 .paper-texture {
@@ -272,8 +267,6 @@ body {
     background-position: center;
     opacity: 0.15;
     z-index: 0;
-    will-change: transform;
-    transform: translateZ(0) translateX(-50%);
 }
 
 .blossoms-layer {
@@ -285,8 +278,6 @@ body {
     width: 100vw;
     max-width: var(--layout-max-width);
     pointer-events: none;
-    will-change: transform;
-    transform: translateZ(0) translateX(-50%);
 }
 
 .content-layer {
@@ -294,7 +285,7 @@ body {
     z-index: 2;
 }
 
-/* TopNav - Ultra-robust backdrop-filter implementation */
+/* TopNav - SIMPLIFIED for cross-browser backdrop-filter compatibility */
 .top-nav {
     position: fixed;
     z-index: 100;
@@ -304,33 +295,20 @@ body {
     justify-content: space-between;
     top: var(--nav-gap);
     left: 50%;
+    transform: translateX(-50%);
     width: calc(100vw - (var(--page-gutter) * 2));
     max-width: calc(var(--layout-max-width) - (var(--page-gutter) * 2));
     height: var(--nav-height);
     
-    /* Stronger fallback background for browsers without backdrop-filter */
+    /* Semi-transparent background */
     background: rgba(250, 249, 246, 0.3);
     
-    /* Backdrop filter with all prefixes */
-    backdrop-filter: blur(5px) saturate(180%);
+    /* Backdrop filter - SIMPLE implementation */
     -webkit-backdrop-filter: blur(5px) saturate(180%);
+    backdrop-filter: blur(5px) saturate(180%);
     
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
-    
-    /* Extreme hardware acceleration forcing */
-    will-change: transform, backdrop-filter;
-    transform: translate3d(-50%, 0, 0);
-    -webkit-transform: translate3d(-50%, 0, 0);
-    perspective: 1000px;
-    -webkit-perspective: 1000px;
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
-    isolation: isolate;
-    contain: layout style paint;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
 }
 
 /* Feature detection fallback for no backdrop-filter support */
@@ -455,8 +433,6 @@ body {
     z-index: 0;
     flex-shrink: 0;
     transition: height 1.5s cubic-bezier(0.22, 0.61, 0.36, 1);
-    will-change: transform;
-    transform: translateZ(0) translateX(-50%);
 }
 
 .sumi-e-image-inner {
@@ -468,8 +444,6 @@ body {
     justify-content: flex-start;
     transform: translateY(-24px);
     transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-    transform: translateZ(0) translateY(-24px);
 }
 
 .sumi-e-image {
@@ -482,8 +456,6 @@ body {
     transform-origin: left center;
     transform: scale(0.9);
     transition: transform 0.1s cubic-bezier(0.4, 0, 0.2, 1);
-    will-change: transform;
-    transform: translateZ(0) scale(0.9);
 }
 
 @media (min-width: 768px) {
@@ -496,7 +468,6 @@ body {
         max-height: none;
         z-index: 0;
         overflow: visible;
-        transform: translateZ(0) translateX(-50%);
     }
 
     .sumi-e-image {
@@ -504,7 +475,9 @@ body {
     }
 }
 
-/* GlassPanel - Ultra-robust cross-browser glass effect */
+/* GlassPanel - SIMPLIFIED for cross-browser backdrop-filter compatibility
+   REMOVED: contain, perspective, transform-style, will-change, backface-visibility
+   These properties break backdrop-filter in Chromium browsers */
 .glass-panel {
     position: relative;
     z-index: 10;
@@ -513,30 +486,17 @@ body {
     max-width: 700px;
     width: 100%;
     
-    /* Stronger fallback background for browsers without backdrop-filter */
+    /* Semi-transparent background - must have transparency for blur to show */
     background: rgba(250, 249, 246, 0.3);
     
-    /* Backdrop filter with increased blur */
-    backdrop-filter: blur(5px) saturate(180%);
+    /* Backdrop filter - SIMPLE implementation
+       Removed all "optimization" properties that break it in Chrome/Firefox */
     -webkit-backdrop-filter: blur(5px) saturate(180%);
+    backdrop-filter: blur(5px) saturate(180%);
     
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
     transition: box-shadow 0.45s ease, border 0.45s ease;
-    
-    /* Extreme hardware acceleration */
-    will-change: transform, backdrop-filter;
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    perspective: 1000px;
-    -webkit-perspective: 1000px;
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
-    isolation: isolate;
-    contain: layout style paint;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
 }
 
 /* Feature detection fallback for no backdrop-filter support */
@@ -845,7 +805,7 @@ body {
     transform: translateY(0);
 }
 
-/* Footer Glass - Ultra-robust implementation */
+/* Footer Glass - SIMPLIFIED for cross-browser backdrop-filter compatibility */
 .footer-glass {
     position: relative;
     z-index: 10;
@@ -853,29 +813,15 @@ body {
     padding: var(--spacing-8) var(--page-gutter);
     width: 100%;
     
-    /* Stronger fallback background */
+    /* Semi-transparent background */
     background: rgba(250, 249, 246, 0.3);
     
-    /* Backdrop filter */
-    backdrop-filter: blur(5px) saturate(180%);
+    /* Backdrop filter - SIMPLE implementation */
     -webkit-backdrop-filter: blur(5px) saturate(180%);
+    backdrop-filter: blur(5px) saturate(180%);
     
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 -4px 16px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
-    
-    /* Extreme hardware acceleration */
-    will-change: transform, backdrop-filter;
-    transform: translate3d(0, 0, 0);
-    -webkit-transform: translate3d(0, 0, 0);
-    perspective: 1000px;
-    -webkit-perspective: 1000px;
-    transform-style: preserve-3d;
-    -webkit-transform-style: preserve-3d;
-    isolation: isolate;
-    contain: layout style paint;
-    backface-visibility: hidden;
-    -webkit-backface-visibility: hidden;
-    -moz-backface-visibility: hidden;
 }
 
 /* Feature detection fallback */
