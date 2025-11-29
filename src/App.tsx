@@ -106,11 +106,11 @@ export default function App() {
               <SereneReveal delay={500} scrollDelay={100}>
                 <div className="cta-section">
                   <h3 className="heading-sm mb-6">
-                    Fangen Sie jetzt and loszulasszen
+                    Fangen Sie jetzt an loszulasszen
                   </h3>
                   <p className="text-body mb-8">
                     <ul>
-                      <li>Pro Woche biete ich 2 kennenlern Sitzungen im Austausch gegen ein Testimonial mit Foto für meine Webseite an.</li>
+                      <li>Pro Woche biete ich 2 Kennenlern-Sitzungen im Austausch gegen ein Testimonial mit Foto für meine Webseite an.</li>
                       <li>Zur Gründung gibt es 30 Hausbesuche ohne Aufpreis.</li>
                       <li>Alle Angebote können Sie in 60 Sekunden direkt online buchen.</li>
                     </ul>
