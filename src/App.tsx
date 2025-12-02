@@ -6,9 +6,15 @@ import { TopNav } from './components/TopNav';
 import { SereneReveal } from './components/SereneReveal';
 import { GradientButton } from './components/GradientButton';
 import { Footer } from './components/Footer';
+import { trackExternalLink } from './utils/matomo';
 import sumiBranch from './assets/branch-transparent.webp';
 
 export default function App() {
+  const handleBookingClick = () => {
+    // Track external link click with UTM context
+    trackExternalLink('https://cal.com/loslasszen', 'Jetzt Buchen Button');
+  };
+
   return (
     <Layout>
       <TopNav />
@@ -118,6 +124,7 @@ export default function App() {
                   <GradientButton
                     href="https://cal.com/loslasszen"
                     target="_blank"
+                    onClick={handleBookingClick}
                   >
                     Jetzt Buchen
                   </GradientButton>
