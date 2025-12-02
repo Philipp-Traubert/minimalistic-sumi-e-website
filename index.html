@@ -35,14 +35,16 @@
       <link rel="canonical" href="https://loslasszen.de/" />
       
       <!-- DNS prefetch for Matomo -->
-      <link rel="dns-prefetch" href="//loslasszen.de.www671.your-server.de" />
+      <link rel="dns-prefetch" href="https://loslasszen.de.www671.your-server.de" />
       
       <!-- Matomo -->
       <script>
         var _paq = window._paq = window._paq || [];
         /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+        _paq.push(['disableCookies']);
+        _paq.push(['setDoNotTrack', true]);
         (function() {
-          var u="//loslasszen.de.www671.your-server.de/matomo/";
+          var u="https://loslasszen.de.www671.your-server.de/matomo/";
           _paq.push(['setTrackerUrl', u+'matomo.php']);
           _paq.push(['setSiteId', '1']);
           _paq.push(['trackPageView']);
