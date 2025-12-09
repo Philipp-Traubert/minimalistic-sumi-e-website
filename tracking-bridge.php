@@ -8,8 +8,8 @@
 
 // --- CONFIGURATION ---
 define('TARGET_URL', 'https://cal.com/loslasszen');
-define('MATOMO_URL', 'https://your-matomo-domain.com/'); // TODO: Replace with your actual Matomo URL
-define('MATOMO_SITE_ID', '1'); // TODO: Replace with your actual site ID
+define('MATOMO_URL', 'https://matomo.loslasszen.de/');
+define('MATOMO_SITE_ID', '1');
 define('BASE_SITE_URL', 'https://www.loslasszen.de');
 define('ALLOWED_LOCATION_PATTERN', '/^[0-9]{2}$/'); // Validates format like "01", "05", "12"
 define('DEBUG_MODE', false); // Set to true for debugging

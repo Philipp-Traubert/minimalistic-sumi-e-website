@@ -4,10 +4,18 @@ This guide explains how to use the Matomo tracking system for your poster campai
 
 ## ✅ What Was Implemented
 
-1. **Matomo Script**: Added to `index.html` with GDPR-friendly settings (cookieless tracking, IP anonymization)
-2. **UTM Parameter Tracking**: Automatically captures all UTM parameters from URLs
-3. **Button Click Tracking**: Custom events track when users click the "Jetzt Buchen" button
-4. **Performance Optimizations**: DNS prefetch for faster Matomo loading
+1. **Matomo Installation**: Accessible at `https://matomo.loslasszen.de/`
+2. **Matomo Script**: Added to `index.html` with GDPR-friendly settings (cookieless tracking, IP anonymization)
+3. **UTM Parameter Tracking**: Automatically captures all UTM parameters from URLs
+4. **Button Click Tracking**: Custom events track when users click the "Jetzt Buchen" button
+5. **Performance Optimizations**: DNS prefetch for faster Matomo loading
+
+## 🔗 Matomo Dashboard Access
+
+**URL**: `https://matomo.loslasszen.de/`
+**Site ID**: 1
+
+Log in to view your analytics dashboard and campaign performance.
 
 ## 📊 How to Use UTM Parameters for Your Poster Campaign
 
@@ -17,7 +25,7 @@ For each poster location, create a unique URL with UTM parameters:
 
 **Base URL**: `https://loslasszen.de/`
 
-**Full URL with UTM**: `https://loslasszen.de/?utm_source=poster&utm_medium=qr&utm_campaign=eberswalde_launch&utm_content=LOOCATION_NAME`
+**Full URL with UTM**: `https://loslasszen.de/?utm_source=poster&utm_medium=qr&utm_campaign=eberswalde_launch&utm_content=LOCATION_NAME`
 
 ### Example URLs for Different Locations
 
@@ -65,7 +73,7 @@ For each poster location, create a unique URL with UTM parameters:
 Visit these URLs to test the tracking:
 - `https://loslasszen.de/?utm_source=poster&utm_medium=qr&utm_campaign=test&utm_content=marktplatz`
 - Click the "Jetzt Buchen" button
-- Check Matomo dashboard for:
+- Check Matomo dashboard at `https://matomo.loslasszen.de/` for:
   - Campaign visit from "test" source
   - Event: "Jetzt Buchen Button - marktplatz"
 
@@ -143,6 +151,6 @@ The implementation includes:
 If you need to add more tracking features:
 1. Check the `src/utils/matomo.ts` file for available functions
 2. Import and use tracking functions in your components
-3. Test in your Matomo dashboard
+3. Test in your Matomo dashboard at `https://matomo.loslasszen.de/`
 
 The tracking is now live and ready for your poster campaign!
