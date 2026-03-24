@@ -75,16 +75,16 @@ export function FallingBlossoms({ layer }: FallingBlossomsProps) {
         rotateYDuration: 5 + Math.random() * 5, // Faster oscillation for rocking (5-10s)
         rockingAmplitude: 30 + Math.random() * 30, // Rocking angle (30-60 degrees)
         rockingAmplitudeX: 25 + Math.random() * 25, // Similar amplitude for X axis
-        // Randomize fade out start between 60% and 85% of the animation duration
-        // This corresponds roughly to the last 25vh of the fall
-        fadeOutStart: 0.6 + Math.random() * 0.25,
+        // Fade much later so petals can continue naturally into lower sections
+        // before disappearing near the end of their path.
+        fadeOutStart: 0.84 + Math.random() * 0.12,
       };
     });
     setBlossoms(newBlossoms);
   }, [layer]);
 
   return (
-    <div className="falling-blossoms-container" style={{ perspective: '1000px' }}>
+    <div className="falling-blossoms-container" style={{ perspective: '1000px', overflow: 'visible' }}>
       {blossoms.map((blossom) => (
         <motion.div
           key={blossom.id}

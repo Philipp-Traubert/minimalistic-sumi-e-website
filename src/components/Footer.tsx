@@ -1,4 +1,5 @@
 import logo from '../assets/logo.png';
+import { Impressum } from './Impressum';
 
 export function Footer() {
     const currentYear = new Date().getFullYear();
@@ -20,10 +21,11 @@ export function Footer() {
                 </div>
 
                 {/* Copyright Section */}
-                <div className="footer-copyright">
+                <div className="footer-copyright flex flex-col items-center gap-3">
                     <p className="footer-text">
                         © {currentYear} loslasszen • Created with love by Philipp Traubert
                     </p>
+                    <Impressum />
                 </div>
             </div>
         </footer>

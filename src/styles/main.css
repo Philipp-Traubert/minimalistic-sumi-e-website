@@ -1,4 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Kolker+Brush&family=Tenor+Sans&family=Water+Brush&family=Noto+Sans:wght@300;400;500;600;700&family=Aref+Ruqaa+Ink:wght@400;700&family=Anonymous+Pro:wght@400;700&display=swap");
+@import "./reviews.css";
+@import "./impressum.css";
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -249,6 +251,7 @@ body {
     min-height: 100vh;
     position: relative;
     overflow: clip;
+    isolation: isolate;
     background-color: var(--bg-color);
     width: 100%;
     max-width: var(--layout-max-width);
@@ -256,17 +259,18 @@ body {
 }
 
 .paper-texture {
-    position: fixed;
-    top: 0;
-    bottom: 0;
+    position: absolute;
+    inset: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 100vw;
+    min-height: 100%;
     pointer-events: none;
-    background-size: cover;
-    background-position: center;
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+    background-position: top center;
     opacity: 0.15;
-    z-index: 0;
+    z-index: -1;
 }
 
 .blossoms-layer {
@@ -282,7 +286,7 @@ body {
 
 .content-layer {
     position: relative;
-    z-index: 2;
+    z-index: 1;
 }
 
 /* TopNav - SIMPLIFIED for cross-browser backdrop-filter compatibility */
@@ -296,17 +300,17 @@ body {
     top: var(--nav-gap);
     left: 50%;
     transform: translateX(-50%);
-    width: calc(100vw - (var(--page-gutter) * 2));
-    max-width: calc(var(--layout-max-width) - (var(--page-gutter) * 2));
+    width: min(calc(100% - (var(--page-gutter) * 2)), calc(var(--layout-max-width) - (var(--page-gutter) * 2)));
     height: var(--nav-height);
-    
+    transition: top 0.525s ease, box-shadow 0.525s ease, background-color 0.525s ease, border-radius 0.525s ease;
+
     /* Semi-transparent background */
     background: rgba(250, 249, 246, 0.3);
-    
+
     /* Backdrop filter - SIMPLE implementation */
     -webkit-backdrop-filter: blur(5px) saturate(180%);
     backdrop-filter: blur(5px) saturate(180%);
-    
+
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
 }
@@ -316,6 +320,14 @@ body {
     .top-nav {
         background: rgba(250, 249, 246, 0.95);
     }
+}
+
+.top-nav-docked {
+    top: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 1.5rem;
+    border-bottom-right-radius: 1.5rem;
 }
 
 .top-nav-logo-container {
@@ -331,17 +343,171 @@ body {
     object-fit: contain;
 }
 
-/* Mobile-first: Button visible on all screens */
+/* Mobile-first: Header actions and links */
 .top-nav-items {
     display: flex;
     align-items: center;
     padding-right: var(--spacing-3);
+    gap: var(--spacing-3);
+}
+
+.top-nav-inline-links {
+    display: flex;
+    align-items: center;
+    gap: 1.1rem;
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    transform-origin: right center;
+    transition: opacity 0.35s ease, transform 0.45s ease;
+}
+
+.top-nav-link {
+    font-family: var(--font-body);
+    font-size: 0.9rem;
+    color: var(--text-primary);
+    opacity: 0.78;
+    text-decoration: none;
+    transition: opacity 0.2s ease;
+    white-space: nowrap;
+}
+
+.top-nav-link:hover {
+    opacity: 1;
+}
+
+.top-nav-menu-anchor {
+    position: relative;
+    display: inline-flex;
+    align-items: flex-start;
+    justify-content: flex-end;
+}
+
+.top-nav-menu-toggle {
+    position: relative;
+    z-index: 2;
+    width: calc(var(--nav-height) * 0.7);
+    height: calc(var(--nav-height) * 0.7);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 999px;
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    background: rgba(250, 249, 246, 0.22);
+    -webkit-backdrop-filter: blur(5px) saturate(180%);
+    backdrop-filter: blur(5px) saturate(180%);
+    box-shadow: 0 4px 18px rgba(0, 0, 0, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.35);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.15rem) scale(0.9);
+    transition: opacity 0.35s ease, transform 0.45s ease, background-color 0.35s ease, border-color 0.35s ease;
+}
+
+.top-nav-menu-toggle span {
+    position: absolute;
+    width: 1rem;
+    height: 1.5px;
+    border-radius: 999px;
+    background: rgba(26, 26, 26, 0.82);
+    transform-origin: center;
+    transition: transform 0.35s ease, opacity 0.35s ease;
+}
+
+.top-nav-menu-toggle span:nth-child(1) {
+    transform: translateY(-0.28rem);
+}
+
+.top-nav-menu-toggle span:nth-child(2) {
+    transform: translateY(0);
+}
+
+.top-nav-menu-toggle span:nth-child(3) {
+    transform: translateY(0.28rem);
+}
+
+.top-nav-menu-toggle.is-open span:nth-child(1) {
+    transform: translateY(0) rotate(45deg);
+}
+
+.top-nav-menu-toggle.is-open span:nth-child(2) {
+    opacity: 0;
+    transform: translateY(0) scaleX(0.6);
+}
+
+.top-nav-menu-toggle.is-open span:nth-child(3) {
+    transform: translateY(0) rotate(-45deg);
+}
+
+.top-nav-mobile-menu {
+    position: absolute;
+    top: calc(100% + 0.65rem);
+    right: var(--spacing-3);
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    min-width: 11.5rem;
+    padding: 0.5rem;
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: #ffffff;
+    -webkit-backdrop-filter: blur(10px) saturate(180%);
+    backdrop-filter: blur(10px) saturate(180%);
+    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.12), inset 0 1px 0 rgba(255, 255, 255, 0.38);
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.35rem) scale(0.96);
+    transform-origin: top right;
+    transition: opacity 0.32s ease, transform 0.42s ease;
+}
+
+.top-nav-mobile-link {
+    display: block;
+    padding: 0.7rem 0.85rem;
+    border-radius: 0.8rem;
+    color: var(--text-primary);
+    text-decoration: none;
+    font-family: var(--font-body);
+    font-size: 0.95rem;
+    opacity: 0.84;
+    transition: background-color 0.2s ease, opacity 0.2s ease;
+}
+
+.top-nav-mobile-link:hover {
+    background: rgba(255, 255, 255, 0.42);
+    opacity: 1;
+}
+
+.top-nav-compact .top-nav-inline-links {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(-0.2rem) scale(0.92);
+    width: 0;
+    overflow: hidden;
+}
+
+.top-nav-compact .top-nav-menu-toggle {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.top-nav-menu-open .top-nav-mobile-menu {
+    opacity: 1;
+    pointer-events: auto;
+    transform: translateY(0) scale(1);
+}
+
+.top-nav-wide .top-nav-mobile-menu {
+    display: none;
 }
 
 @media (min-width: 768px) {
     .top-nav-items {
         padding-right: var(--spacing-6);
-        gap: 2rem;
+        gap: 1.1rem;
+    }
+
+    .top-nav-link {
+        font-size: 0.95rem;
     }
 }
 
@@ -376,6 +542,16 @@ body {
         padding-left: var(--spacing-16);
         padding-right: var(--spacing-16);
         font-size: 0.95rem;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .top-nav,
+    .top-nav-inline-links,
+    .top-nav-menu-toggle,
+    .top-nav-menu-toggle span,
+    .top-nav-mobile-menu {
+        transition: none;
     }
 }
 
@@ -485,15 +661,15 @@ body {
     padding: var(--spacing-12);
     max-width: 700px;
     width: 100%;
-    
+
     /* Semi-transparent background - must have transparency for blur to show */
     background: rgba(250, 249, 246, 0.3);
-    
+
     /* Backdrop filter - SIMPLE implementation
        Removed all "optimization" properties that break it in Chrome/Firefox */
     -webkit-backdrop-filter: blur(5px) saturate(180%);
     backdrop-filter: blur(5px) saturate(180%);
-    
+
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
     transition: box-shadow 0.45s ease, border 0.45s ease;
@@ -536,6 +712,82 @@ body {
     }
 }
 
+.landing-page-flow {
+    position: relative;
+    z-index: 2;
+}
+
+.intro-shell {
+    position: relative;
+    display: grid;
+    isolation: isolate;
+    z-index: 15;
+}
+
+.intro-shell > * {
+    grid-area: 1 / 1;
+}
+
+.intro-sticky-stage {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.intro-sticky-stage::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 18vh;
+    background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(255, 255, 255, 0.06) 55%, rgba(255, 255, 255, 0.14) 100%);
+    pointer-events: none;
+    z-index: 2;
+}
+
+.intro-paper-texture {
+    position: absolute;
+    inset: 0;
+    background-repeat: repeat-y;
+    background-size: 100% auto;
+    background-position: top center;
+    opacity: 0.15;
+    z-index: 0;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 72%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 72%, rgba(0, 0, 0, 0) 100%);
+}
+
+.petal-overlay {
+    position: fixed;
+    top: -24vh;
+    bottom: -24vh;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    max-width: var(--layout-max-width);
+    pointer-events: none;
+    overflow: visible;
+}
+
+.petal-overlay-track {
+    position: absolute;
+    inset: 0;
+    transform: translateY(var(--petal-offset-y, 0px));
+    overflow: visible;
+}
+
+.petal-overlay--back {
+    z-index: 4;
+}
+
+.petal-overlay--front {
+    z-index: 40;
+}
+
 .content-section {
     width: 100%;
     display: flex;
@@ -546,7 +798,7 @@ body {
     padding-top: var(--nav-gap);
     padding-bottom: var(--spacing-24);
     position: relative;
-    z-index: 10;
+    z-index: 20;
     min-height: 100vh;
     margin-top: calc(var(--nav-gap) + var(--nav-height));
     min-width: 393px;
@@ -578,8 +830,63 @@ body {
     }
 }
 
+.intro-content-section {
+    padding-bottom: var(--spacing-16);
+}
+
 .glass-panel-custom {
     padding-top: 2vh;
+}
+
+.full-width-section {
+    position: relative;
+    z-index: 10;
+    padding-left: var(--page-gutter);
+    padding-right: var(--page-gutter);
+    margin-top: var(--spacing-12);
+}
+
+.full-width-glass-panel {
+    width: 100%;
+    max-width: none;
+}
+
+.about-section {
+    padding-bottom: var(--spacing-8);
+}
+
+.about-section-grid {
+    display: grid;
+    gap: var(--spacing-10);
+    align-items: center;
+}
+
+.sumi-e-image-wrapper.sumi-e-image--section {
+    position: absolute;
+    inset: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100vw;
+    max-width: var(--layout-max-width);
+    height: 100vh;
+    z-index: 1;
+}
+
+.review-card-link {
+    display: block;
+    text-decoration: none;
+    color: inherit;
+}
+
+.review-card-link:focus-visible {
+    outline: 2px solid var(--accent-color);
+    outline-offset: 6px;
+    border-radius: 1.75rem;
+}
+
+#bewertungen,
+#about-me-heading {
+    scroll-margin-top: calc(var(--nav-height) + var(--nav-gap) + var(--spacing-8));
 }
 
 /* Typography & Elements */
@@ -812,14 +1119,14 @@ body {
     margin-top: var(--spacing-16);
     padding: var(--spacing-8) var(--page-gutter);
     width: 100%;
-    
+
     /* Semi-transparent background */
     background: rgba(250, 249, 246, 0.3);
-    
+
     /* Backdrop filter - SIMPLE implementation */
     -webkit-backdrop-filter: blur(5px) saturate(180%);
     backdrop-filter: blur(5px) saturate(180%);
-    
+
     border-top: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 -4px 16px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
 }
@@ -907,4 +1214,36 @@ body {
     .footer-disclaimer .footer-text {
         font-size: 0.85rem;
     }
+}
+
+/* About Me Section */
+.about-me-image-card {
+    position: relative;
+    border-radius: 1.5rem;
+    overflow: hidden;
+    /* Semi-transparent background */
+    background: rgba(250, 249, 246, 0.3);
+
+    /* Backdrop filter */
+    -webkit-backdrop-filter: blur(5px) saturate(180%);
+    backdrop-filter: blur(5px) saturate(180%);
+
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+    aspect-ratio: 4 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+@supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
+    .about-me-image-card {
+        background: rgba(250, 249, 246, 0.95);
+    }
+}
+
+.about-me-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
