@@ -8,6 +8,7 @@ export function TopNav() {
     const [docked, setDocked] = useState(false);
     const [compactNav, setCompactNav] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const isHomePage = window.location.pathname.replace(/\/+$/, '') === '' || window.location.pathname.replace(/\/+$/, '') === '/';
 
     useEffect(() => {
         const onScroll = () => {
@@ -44,9 +45,15 @@ export function TopNav() {
             </a>
 
             <div className="top-nav-items">
-                <div className="top-nav-inline-links" aria-hidden={compactNav}>
-                    <a href="#bewertungen" className="top-nav-link">Bewertungen</a>
-                    <a href="#about-me-heading" className="top-nav-link">Über mich</a>
+                <div className="top-nav-inline-links" aria-hidden={compactNav || !isHomePage}>
+                    {isHomePage ? (
+                        <>
+                            <a href="#bewertungen" className="top-nav-link">Bewertungen</a>
+                            <a href="#about-me-heading" className="top-nav-link">Über mich</a>
+                        </>
+                    ) : (
+                        <a href="/" className="top-nav-link">Zur Hauptseite</a>
+                    )}
                 </div>
 
                 <div className="top-nav-menu-anchor">
@@ -64,8 +71,14 @@ export function TopNav() {
                     </button>
 
                     <div id="top-nav-mobile-menu" className="top-nav-mobile-menu" aria-hidden={!compactNav || !menuOpen}>
-                        <a href="#bewertungen" className="top-nav-mobile-link" onClick={closeMenu}>Bewertungen</a>
-                        <a href="#about-me-heading" className="top-nav-mobile-link" onClick={closeMenu}>Über mich</a>
+                        {isHomePage ? (
+                            <>
+                                <a href="#bewertungen" className="top-nav-mobile-link" onClick={closeMenu}>Bewertungen</a>
+                                <a href="#about-me-heading" className="top-nav-mobile-link" onClick={closeMenu}>Über mich</a>
+                            </>
+                        ) : (
+                            <a href="/" className="top-nav-mobile-link" onClick={closeMenu}>Zur Hauptseite</a>
+                        )}
                     </div>
                 </div>
 
