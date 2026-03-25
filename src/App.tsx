@@ -203,7 +203,7 @@ export default function App() {
                 </p><br></br>
                 <p>
                   In einer Phase großen Wandels und starker therapieresistenter Schmerzen, fing ich wieder an mich intensiv mit Körperarbeit zu beschäftigen.
-                  Was bei mir nach vielen Monaten und verschiedenen Therapieansätzen endlich Linderung brachte, ist eine Modalität mit Elementen, die ihre Basis in der Kultivierung des Practicioners durch Meditation versteht.
+                  Was bei mir nach vielen Monaten und verschiedenen Therapieansätzen endlich Linderung brachte, ist eine Modalität, die ihre Basis in der Kultivierung des Practicioners durch Meditation versteht.
                   Sie kombiniert Elemente der Arbeit von Ida Rolf, die den Körper wieder ausrichtet,
                   der bewussten Rekalibrierung des Nervensystems und der Selbsterfahrung des Körpers nach Moshe Feldenkrais, sowie intensive Triggerpunktarbeit.
                   Das ist die Art der Körperarbeit, die Sie bei mir erfahren.<br></br><br></br>
