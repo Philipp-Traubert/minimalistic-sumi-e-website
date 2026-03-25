@@ -29,11 +29,12 @@ export function FallingBlossoms({ layer }: FallingBlossomsProps) {
     rotateYDuration: number;
     rockingAmplitude: number;
     rockingAmplitudeX: number;
+    has3D: boolean;
     fadeOutStart: number;
   }>>([]);
 
   useEffect(() => {
-    const count = layer === 'front' ? 10 : 17; // Reduced by ~30% (was 15/25)
+    const count = layer === 'front' ? 5 : 8;
     const newBlossoms = Array.from({ length: count }).map((_, i) => {
       // Determine start position
       // 30% chance to start off-screen left (-15% to 0%)
@@ -43,8 +44,8 @@ export function FallingBlossoms({ layer }: FallingBlossomsProps) {
         ? Math.random() * 15 - 15
         : Math.random() * 40;
 
-      // Start between 30.5vh and 50vh from top (relative to branch)
-      const startY = 30.5 + Math.random() * 19.5;
+      // Start lower so petals emerge from the branch area instead of above it
+      const startY = 40.5 + Math.random() * 19.5;
 
       // Calculate end position based on angle (15 to 45 degrees)
       const angleDeg = 15 + Math.random() * 30;
@@ -59,32 +60,33 @@ export function FallingBlossoms({ layer }: FallingBlossomsProps) {
       // Vertical drop is approx 80vh (from ~45vh to ~125vh)
       const endY = 120 + Math.random() * 10;
 
+      const has3D = true;
+
       return {
         id: i,
         startX: startX,
         startY: startY,
         endX: endX,
         endY: endY,
-        delay: Math.random() * 30,
-        duration: 30 + Math.random() * 20, // Gentle, tranquil speed
-        scale: 0.5 + Math.random() * 0.5,
+        delay: Math.random() * 24,
+        duration: 34 + Math.random() * 14,
+        scale: 0.72 + Math.random() * 0.18,
         imageIndex: Math.floor(Math.random() * blossomImages.length),
-        swayDuration: 4 + Math.random() * 4,
-        swayAmplitude: 20 + Math.random() * 30,
-        rotateXDuration: 6 + Math.random() * 6, // Similar speed to rotateY
-        rotateYDuration: 5 + Math.random() * 5, // Faster oscillation for rocking (5-10s)
-        rockingAmplitude: 30 + Math.random() * 30, // Rocking angle (30-60 degrees)
-        rockingAmplitudeX: 25 + Math.random() * 25, // Similar amplitude for X axis
-        // Fade much later so petals can continue naturally into lower sections
-        // before disappearing near the end of their path.
-        fadeOutStart: 0.84 + Math.random() * 0.12,
+        swayDuration: 5 + Math.random() * 3,
+        swayAmplitude: has3D ? 10 + Math.random() * 14 : 12 + Math.random() * 10,
+        rotateXDuration: has3D ? 8 + Math.random() * 4 : 0,
+        rotateYDuration: has3D ? 7 + Math.random() * 4 : 0,
+        rockingAmplitude: has3D ? 10 + Math.random() * 10 : 0,
+        rockingAmplitudeX: has3D ? 8 + Math.random() * 8 : 0,
+        has3D,
+        fadeOutStart: 0.84 + Math.random() * 0.1,
       };
     });
     setBlossoms(newBlossoms);
   }, [layer]);
 
   return (
-    <div className="falling-blossoms-container" style={{ perspective: '1000px', overflow: 'visible' }}>
+    <div className="falling-blossoms-container" style={{ perspective: '800px', overflow: 'visible' }}>
       {blossoms.map((blossom) => (
         <motion.div
           key={blossom.id}
@@ -92,7 +94,6 @@ export function FallingBlossoms({ layer }: FallingBlossomsProps) {
           style={{
             width: '30px',
             height: 'auto',
-            transformStyle: 'preserve-3d',
           }}
           initial={{ top: `${blossom.startY}vh`, left: `${blossom.startX}%`, opacity: 0 }}
           animate={{
@@ -109,14 +110,18 @@ export function FallingBlossoms({ layer }: FallingBlossomsProps) {
             times: [0, 0.1, blossom.fadeOutStart, 1],
           }}
         >
-          {/* Inner container for swaying and 3D rotation */}
           <motion.div
-            style={{ transformStyle: 'preserve-3d' }}
+            style={blossom.has3D ? { transformStyle: 'preserve-3d' } : undefined}
             animate={{
               x: [-blossom.swayAmplitude, blossom.swayAmplitude, -blossom.swayAmplitude],
-              rotateX: [-blossom.rockingAmplitudeX, blossom.rockingAmplitudeX, -blossom.rockingAmplitudeX], // Rocking motion X
-              rotateY: [-blossom.rockingAmplitude, blossom.rockingAmplitude, -blossom.rockingAmplitude], // Rocking motion Y
-              rotateZ: [0, 360], // Slow gentle spin for orientation
+              rotateX: blossom.has3D
+                ? [-blossom.rockingAmplitudeX, blossom.rockingAmplitudeX, -blossom.rockingAmplitudeX]
+                : 0,
+              rotateY: blossom.has3D
+                ? [-blossom.rockingAmplitude, blossom.rockingAmplitude, -blossom.rockingAmplitude]
+                : 0,
+              z: blossom.has3D ? [-10, 10, -10] : 0,
+              rotateZ: blossom.has3D ? [0, 120, 240, 360] : [0, 180, 360],
             }}
             transition={{
               x: {
@@ -124,18 +129,29 @@ export function FallingBlossoms({ layer }: FallingBlossomsProps) {
                 repeat: Infinity,
                 ease: "easeInOut",
               },
-              rotateX: {
-                duration: blossom.rotateXDuration,
-                repeat: Infinity,
-                ease: "easeInOut",
-              },
-              rotateY: {
-                duration: blossom.rotateYDuration,
-                repeat: Infinity,
-                ease: "easeInOut",
-              },
+              rotateX: blossom.has3D
+                ? {
+                    duration: blossom.rotateXDuration,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }
+                : { duration: 0 },
+              rotateY: blossom.has3D
+                ? {
+                    duration: blossom.rotateYDuration,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }
+                : { duration: 0 },
+              z: blossom.has3D
+                ? {
+                    duration: blossom.swayDuration * 1.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }
+                : { duration: 0 },
               rotateZ: {
-                duration: blossom.duration * 1.5, // Even slower Z rotation
+                duration: blossom.has3D ? blossom.duration * 2.2 : blossom.duration * 1.8,
                 repeat: Infinity,
                 ease: "linear",
               }
@@ -147,8 +163,7 @@ export function FallingBlossoms({ layer }: FallingBlossomsProps) {
               className="falling-blossom-image"
               style={{
                 scale: blossom.scale,
-                backfaceVisibility: 'visible', // Ensure visible from both sides
-                // Removed blur filter for sharper edges
+                backfaceVisibility: blossom.has3D ? 'visible' : undefined,
               }}
             />
           </motion.div>
