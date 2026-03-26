@@ -602,7 +602,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 100vw;
-    max-width: none;
+    max-width: var(--layout-max-width);
     height: 100vh;
     aspect-ratio: 1 / 1;
     max-height: none;
@@ -724,8 +724,6 @@ body {
     display: grid;
     isolation: isolate;
     z-index: 15;
-    width: 100vw;
-    margin-left: calc(50% - 50vw);
 }
 
 .intro-shell > * {
@@ -793,7 +791,9 @@ body {
 }
 
 .content-section {
-    width: 100%;
+    width: min(100%, var(--layout-max-width));
+    margin-left: auto;
+    margin-right: auto;
     display: flex;
     align-items: flex-start;
     justify-content: flex-start;
