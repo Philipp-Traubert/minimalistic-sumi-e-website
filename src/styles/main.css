@@ -239,7 +239,7 @@
 
 body {
     font-family: var(--font-sans);
-    background-color: var(--background);
+    background-color: #f7f2ea;
     color: var(--foreground);
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
@@ -247,6 +247,19 @@ body {
 }
 
 /* Layout */
+.viewport-paper-texture {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    min-height: 100vh;
+    pointer-events: none;
+    background-repeat: repeat-y;
+    background-size: cover;
+    background-position: top center;
+    opacity: 0.13;
+    z-index: -2;
+}
+
 .layout-container {
     min-height: 100vh;
     position: relative;

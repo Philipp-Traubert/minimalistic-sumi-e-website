@@ -14,27 +14,37 @@ export function Layout({
   fixedBlossoms = true,
 }: LayoutProps) {
   return (
-    <div className="layout-container">
+    <>
       {fixedBackground && (
         <div
-          className="paper-texture"
+          className="viewport-paper-texture"
           style={{ backgroundImage: `url(${paperTexture})` }}
+          aria-hidden="true"
         />
       )}
 
-      {fixedBlossoms && (
-        <div className="blossoms-layer" style={{ zIndex: 1 }}>
-          <FallingBlossoms layer="back" />
-        </div>
-      )}
+      <div className="layout-container">
+        {fixedBackground && (
+          <div
+            className="paper-texture"
+            style={{ backgroundImage: `url(${paperTexture})` }}
+          />
+        )}
 
-      <div className="content-layer">{children}</div>
+        {fixedBlossoms && (
+          <div className="blossoms-layer" style={{ zIndex: 1 }}>
+            <FallingBlossoms layer="back" />
+          </div>
+        )}
 
-      {fixedBlossoms && (
-        <div className="blossoms-layer" style={{ zIndex: 3 }}>
-          <FallingBlossoms layer="front" />
-        </div>
-      )}
-    </div>
+        <div className="content-layer">{children}</div>
+
+        {fixedBlossoms && (
+          <div className="blossoms-layer" style={{ zIndex: 3 }}>
+            <FallingBlossoms layer="front" />
+          </div>
+        )}
+      </div>
+    </>
   );
 }
