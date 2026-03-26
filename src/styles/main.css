@@ -754,7 +754,15 @@ body {
 }
 
 .intro-paper-texture {
-    display: none;
+    position: absolute;
+    inset: 0;
+    background-repeat: repeat-y;
+    background-size: cover;
+    background-position: top center;
+    opacity: 0.08;
+    z-index: 0;
+    mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 72%, rgba(0, 0, 0, 0) 100%);
+    -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 0%, rgba(0, 0, 0, 1) 72%, rgba(0, 0, 0, 0) 100%);
 }
 
 .petal-overlay {
