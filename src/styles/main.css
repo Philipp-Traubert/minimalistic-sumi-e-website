@@ -602,7 +602,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     width: 100vw;
-    max-width: var(--layout-max-width);
+    max-width: none;
     height: 100vh;
     aspect-ratio: 1 / 1;
     max-height: none;
@@ -724,6 +724,8 @@ body {
     display: grid;
     isolation: isolate;
     z-index: 15;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
 }
 
 .intro-shell > * {
@@ -736,7 +738,7 @@ body {
     height: 100vh;
     z-index: 0;
     pointer-events: none;
-    overflow: hidden;
+    overflow: clip;
 }
 
 .intro-sticky-stage::after {
