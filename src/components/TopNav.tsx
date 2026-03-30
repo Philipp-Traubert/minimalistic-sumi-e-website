@@ -1,23 +1,49 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import logo from '../assets/logo.png';
 import { GradientButton } from './GradientButton';
 
 const COLLAPSE_BREAKPOINT = '(max-width: 980px)';
+const DOCK_ON_SCROLL_Y = 64;
+const UNDOCK_ON_SCROLL_Y = 20;
 
 export function TopNav() {
     const [docked, setDocked] = useState(false);
     const [compactNav, setCompactNav] = useState(false);
     const [menuOpen, setMenuOpen] = useState(false);
+    const scrollFrame = useRef<number | null>(null);
+    const dockedRef = useRef(false);
     const isHomePage = window.location.pathname.replace(/\/+$/, '') === '' || window.location.pathname.replace(/\/+$/, '') === '/';
 
     useEffect(() => {
-        const onScroll = () => {
-            setDocked(window.scrollY > 48);
+        const updateDockedState = () => {
+            const scrollY = window.scrollY;
+            const nextDocked = dockedRef.current
+                ? scrollY > UNDOCK_ON_SCROLL_Y
+                : scrollY > DOCK_ON_SCROLL_Y;
+
+            if (nextDocked !== dockedRef.current) {
+                dockedRef.current = nextDocked;
+                setDocked(nextDocked);
+            }
         };
 
-        onScroll();
+        const onScroll = () => {
+            if (scrollFrame.current !== null) return;
+            scrollFrame.current = window.requestAnimationFrame(() => {
+                scrollFrame.current = null;
+                updateDockedState();
+            });
+        };
+
+        updateDockedState();
         window.addEventListener('scroll', onScroll, { passive: true });
-        return () => window.removeEventListener('scroll', onScroll);
+
+        return () => {
+            window.removeEventListener('scroll', onScroll);
+            if (scrollFrame.current !== null) {
+                window.cancelAnimationFrame(scrollFrame.current);
+            }
+        };
     }, []);
 
     useEffect(() => {

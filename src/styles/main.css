@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Kolker+Brush&family=Tenor+Sans&family=Water+Brush&family=Noto+Sans:wght@300;400;500;600;700&family=Aref+Ruqaa+Ink:wght@400;700&family=Anonymous+Pro:wght@400;700&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap");
 @import "./reviews.css";
 @import "./impressum.css";
 @tailwind base;
@@ -246,26 +246,32 @@ body {
     -moz-osx-font-smoothing: grayscale;
 }
 
+html,
+body,
+#root {
+    background-color: var(--bg-color);
+}
+
 /* Layout */
 .viewport-paper-texture {
     position: fixed;
     inset: 0;
     width: 100vw;
-    min-height: 100vh;
+    height: 100vh;
     pointer-events: none;
     background-repeat: repeat-y;
     background-size: cover;
     background-position: top center;
-    opacity: 0.13;
+    opacity: 0.08;
     z-index: -2;
 }
 
 .layout-container {
     min-height: 100vh;
     position: relative;
-    overflow: clip;
+    overflow: visible;
     isolation: isolate;
-    background-color: var(--bg-color);
+    background-color: transparent;
     width: 100%;
     max-width: var(--layout-max-width);
     margin: 0 auto;
@@ -304,7 +310,7 @@ body {
     transform: translateX(-50%);
     width: min(calc(100% - (var(--page-gutter) * 2)), calc(var(--layout-max-width) - (var(--page-gutter) * 2)));
     height: var(--nav-height);
-    transition: top 0.525s ease, box-shadow 0.525s ease, background-color 0.525s ease, border-radius 0.525s ease;
+    transition: top 0.525s ease, box-shadow 0.525s ease, border-radius 0.525s ease;
 
     /* Semi-transparent background */
     background: rgba(250, 249, 246, 0.3);
@@ -315,6 +321,7 @@ body {
 
     border: 1px solid rgba(255, 255, 255, 0.3);
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.1), 0 2px 8px 0 rgba(0, 0, 0, 0.05), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+    isolation: isolate;
 }
 
 /* Feature detection fallback for no backdrop-filter support */
@@ -330,6 +337,7 @@ body {
     border-top-right-radius: 0;
     border-bottom-left-radius: 1.5rem;
     border-bottom-right-radius: 1.5rem;
+    box-shadow: 0 10px 30px 0 rgba(0, 0, 0, 0.08), 0 2px 8px 0 rgba(0, 0, 0, 0.04), inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
 }
 
 .top-nav-logo-container {
@@ -718,6 +726,7 @@ body {
 .landing-page-flow {
     position: relative;
     z-index: 2;
+    background: transparent;
 }
 
 .intro-shell {
@@ -852,6 +861,7 @@ body {
     padding-left: var(--page-gutter);
     padding-right: var(--page-gutter);
     margin-top: var(--spacing-12);
+    background: transparent;
 }
 
 .full-width-glass-panel {
@@ -953,6 +963,7 @@ body {
     width: 6rem;
     background-color: var(--accent-color);
     margin-top: var(--spacing-6);
+    margin-bottom: var(--spacing-8);
     opacity: 0.6;
 }
 
@@ -1127,6 +1138,15 @@ body {
     margin-top: var(--spacing-16);
     padding: var(--spacing-8) var(--page-gutter);
     width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    transition:
+        width 0.525s ease,
+        border-radius 0.525s ease,
+        box-shadow 0.525s ease,
+        background-color 0.525s ease,
+        border-color 0.525s ease,
+        margin-top 0.525s ease;
 
     /* Semi-transparent background */
     background: rgba(250, 249, 246, 0.3);
@@ -1206,6 +1226,103 @@ body {
     opacity: 0.7;
 }
 
+.paid-session-page-panel {
+    max-width: 780px;
+}
+
+.paid-session-page-panel .heading-lg {
+    margin-top: var(--spacing-12);
+}
+
+.paid-session-page-panel .heading-sm {
+    margin-top: var(--spacing-8);
+}
+
+.paid-session-subtitle {
+    font-size: 1.15rem;
+    opacity: 0.95;
+    max-width: 42rem;
+}
+
+.paid-session-inline-cta {
+    margin-top: var(--spacing-8);
+    margin-bottom: var(--spacing-8);
+}
+
+.inline-reviews-block {
+    margin-top: var(--spacing-12);
+    padding-top: var(--spacing-2);
+}
+
+.inline-reviews-loading {
+    margin-top: var(--spacing-12);
+    padding: var(--spacing-6);
+    border-radius: 1.2rem;
+    background: rgba(250, 249, 246, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.28);
+    text-align: center;
+    opacity: 0.72;
+}
+
+.inline-reviews-header {
+    margin-bottom: var(--spacing-6);
+}
+
+.inline-reviews-rating {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-top: var(--spacing-4);
+    flex-wrap: wrap;
+}
+
+.inline-reviews-carousel-shell .reviews-carousel-wrapper {
+    padding-inline: 0;
+}
+
+.inline-reviews-carousel-shell .reviews-carousel-button {
+    width: 2.5rem;
+    height: 2.5rem;
+}
+
+.inline-reviews-carousel-shell .reviews-carousel-slide {
+    padding-bottom: var(--spacing-2);
+}
+
+.inline-reviews-carousel-shell .review-card {
+    min-height: 220px;
+    padding: 1.4rem;
+    border-radius: 1.25rem;
+}
+
+.paid-session-note-block,
+.paid-session-safety-block {
+    padding: var(--spacing-6);
+    border-radius: 1.2rem;
+    background: rgba(250, 249, 246, 0.24);
+    border: 1px solid rgba(255, 255, 255, 0.36);
+    -webkit-backdrop-filter: blur(4px) saturate(145%);
+    backdrop-filter: blur(4px) saturate(145%);
+    box-shadow:
+        0 8px 32px 0 rgba(0, 0, 0, 0.1),
+        0 2px 8px 0 rgba(0, 0, 0, 0.05),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+
+.paid-session-note-block:hover,
+.paid-session-safety-block:hover {
+    box-shadow:
+        0 12px 40px 0 rgba(0, 0, 0, 0.14),
+        0 4px 12px 0 rgba(0, 0, 0, 0.06),
+        inset 0 1px 0 0 rgba(255, 255, 255, 0.5);
+    transform: translateY(-2px);
+}
+
+.paid-session-note-block {
+    position: relative;
+}
+
 @media (min-width: 768px) {
     .footer-glass {
         padding: var(--spacing-12) var(--page-gutter);
@@ -1221,6 +1338,22 @@ body {
 
     .footer-disclaimer .footer-text {
         font-size: 0.85rem;
+    }
+}
+
+@media (min-width: 2050px) {
+    .footer-glass {
+        width: min(calc(100% - (var(--page-gutter) * 2)), calc(var(--layout-max-width) - (var(--page-gutter) * 2)));
+        margin-top: calc(var(--spacing-16) + var(--spacing-4));
+        border-top-left-radius: 1.5rem;
+        border-top-right-radius: 1.5rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.3);
+        border-left: 1px solid rgba(255, 255, 255, 0.3);
+        border-right: 1px solid rgba(255, 255, 255, 0.3);
+        box-shadow:
+            0 -8px 32px 0 rgba(0, 0, 0, 0.08),
+            0 -2px 8px 0 rgba(0, 0, 0, 0.04),
+            inset 0 1px 0 0 rgba(255, 255, 255, 0.4);
     }
 }
 

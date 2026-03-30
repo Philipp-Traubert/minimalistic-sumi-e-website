@@ -1,27 +1,8 @@
 import { OfferLandingPage } from './components/OfferLandingPage';
+import { PaidSessionPage as PaidSessionDesignPage } from './components/PaidSessionPage';
 
 export function PaidSessionPage() {
-  return (
-    <OfferLandingPage
-      title="60 Minuten Körperarbeit für Menschen, die bereit sind loszulassen."
-      intro="Diese Seite ist für Menschen gedacht, die über den Flyer zu mir gefunden haben und direkt eine reguläre Sitzung buchen möchten. Wenn Sie spüren, dass Ihr Körper nach Aufmerksamkeit, Entlastung und neuer Ausrichtung ruft, können Sie hier direkt Ihren Termin wählen."
-      bullets={[
-        '60 Minuten Körperarbeit in Eberswalde.',
-        'Preis: 120€ pro Sitzung.',
-        'Check-in zu Körper & Befinden',
-        'Direkte Online-Buchung in unter einer Minute.',
-      ]}
-      detailTitle="Was Sie erwartet"
-      detailText="Check-in zu Körper & Befinden
-      Körperarbeit, entsprechend der Bedürfnisse,
-      um Leichtigkeit, Präsenz & Ausrichtung zu
-      unterstützen
-      Erdung & Check-out am Ende"
-      ctaLabel="Bezahlte Sitzung buchen"
-      bookingUrl="https://cal.com/loslasszen/loslasszen-60-minuten-bei-mir"
-      trackingLabel="QR Landing Page – Bezahlte Sitzung"
-    />
-  );
+  return <PaidSessionDesignPage />;
 }
 
 export function FreeSessionPage() {
