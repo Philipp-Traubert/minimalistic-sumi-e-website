@@ -111,8 +111,8 @@ export function FreeSessionPage() {
                         target="_blank"
                         onClick={handleBookingClick}
                       >
-                        <span className="cta-copy cta-copy-long">In Unter 1 Minute Online Platz Sichern</span>
-                        <span className="cta-copy cta-copy-short">Platz Jetzt Online Sichern</span>
+                        <span className="cta-copy cta-copy-long">In Unter Einer Minute Online Termin Sichern</span>
+                        <span className="cta-copy cta-copy-short">Online Termin Sichern</span>
                       </GradientButton>
                     </div>
                   </SereneReveal>
