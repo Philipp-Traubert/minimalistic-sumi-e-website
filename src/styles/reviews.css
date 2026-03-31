@@ -506,6 +506,10 @@
 
   .review-text {
     font-size: 0.925rem;
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
   }
 
   .reviews-rating-number {
