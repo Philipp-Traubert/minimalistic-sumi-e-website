@@ -154,6 +154,14 @@ export default function App() {
                   </div>
                 </div>
 
+                <SereneReveal delay={560} scrollDelay={130}>
+                  <div className="cta-section cta-section-secondary cta-section-no-divider">
+                    <GradientButton href="/sitzung">
+                      Neugierig? Hier erfahren Sie mehr
+                    </GradientButton>
+                  </div>
+                </SereneReveal>
+
                 <SereneReveal delay={500} scrollDelay={100}>
                   <div className="cta-section">
                     <h3 className="heading-sm mb-6">
@@ -161,7 +169,7 @@ export default function App() {
                     </h3>
                     <div className="text-body mb-8">
                       <ul className="pl-6 list-bullet">
-                        <li>Pro Woche biete ich 2 Kennenlern-Sitzungen im Austausch gegen ein Testimonial mit Foto für meine Webseite an.</li>
+                        <li>Jede Woche biete ich 2 Kennenlern-Sitzungen im Austausch gegen ein Testimonial mit Foto für meine Webseite und Flyer an.</li>
                         <li>Zur Gründung gibt es 30 Hausbesuche ohne Aufpreis.</li>
                         <li>Alle Angebote können Sie in 60 Sekunden direkt online buchen.</li>
                       </ul>
@@ -220,6 +228,18 @@ export default function App() {
                 <p>
                   Ich freue mich darauf, mit Ihnen zu arbeiten und sie auf Ihrem Weg begleiten zu dürfen.
                 </p>
+                <br></br>
+
+              </div>
+
+              <div className="cta-section cta-section-secondary cta-section-no-divider">
+                <GradientButton
+                  href="https://cal.com/loslasszen"
+                  target="_blank"
+                  onClick={handleBookingClick}
+                >
+                  Buchen Sie jetzt Ihre Sitzung
+                </GradientButton>
               </div>
             </div>
           </GlassPanel>

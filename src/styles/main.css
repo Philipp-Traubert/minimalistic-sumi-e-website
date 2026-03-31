@@ -546,6 +546,17 @@ body,
     text-decoration: none;
 }
 
+@media (max-width: 767px) {
+    .top-nav .gradient-button {
+        text-align: center;
+    }
+
+    .top-nav .gradient-button-content {
+        width: 100%;
+        text-align: center;
+    }
+}
+
 /* Desktop: Larger button */
 @media (min-width: 768px) {
     .gradient-button {
@@ -594,7 +605,7 @@ body,
             #ed6a75 0%,
             transparent 40%);
     transform: translate(var(--x, 0), var(--y, 50%));
-    transition: transform 0.7s ease;
+    transition: transform var(--highlight-transition-duration, 0.7s) ease;
     opacity: 1;
     z-index: 1;
     pointer-events: none;
@@ -1247,6 +1258,12 @@ body,
 .paid-session-inline-cta {
     margin-top: var(--spacing-8);
     margin-bottom: var(--spacing-8);
+}
+
+.cta-section-no-divider {
+    margin-top: 0;
+    padding-top: 0;
+    border-top: none;
 }
 
 .inline-reviews-block {

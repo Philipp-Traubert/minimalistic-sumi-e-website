@@ -3,7 +3,7 @@ import { useReviews } from './hooks/useReviews';
 import { ReviewsCarousel } from './ReviewsCarousel';
 import { ReviewsSkeleton } from './ReviewsSkeleton';
 import { StarRating } from './StarRating';
-import { GOOGLE_BUSINESS_PROFILE_URL } from './mockData';
+import { GOOGLE_BUSINESS_PROFILE_URL, GOOGLE_WRITE_REVIEW_URL } from './mockData';
 import type { PlatformFilter } from './types';
 
 /**
@@ -13,6 +13,9 @@ import type { PlatformFilter } from './types';
  * Includes Schema.org structured data for SEO.
  */
 export function ReviewsSection() {
+  const openBusinessProfile = () => {
+    window.open(GOOGLE_BUSINESS_PROFILE_URL, '_blank', 'noopener,noreferrer');
+  };
   const {
     reviews,
     loading,
@@ -65,7 +68,16 @@ export function ReviewsSection() {
   const showFilter = hasGoogle && hasFacebook;
 
   return (
-    <section className="reviews-section" id="bewertungen" aria-label="Kundenbewertungen">
+    <section
+      className="reviews-section reviews-section-clickable"
+      id="bewertungen"
+      aria-label="Kundenbewertungen"
+      onClick={(event) => {
+        const target = event.target as HTMLElement;
+        if (target.closest('a, button')) return;
+        openBusinessProfile();
+      }}
+    >
       {/* Schema.org structured data */}
       {schemaData && (
         <script
@@ -158,7 +170,7 @@ export function ReviewsSection() {
       {!loading && (
         <div className="reviews-cta">
           <a
-            href="https://search.google.com/local/writereview?placeid=ChIJ9yYdjDJ2sUcRrEkGbMbTwuw"
+            href={GOOGLE_WRITE_REVIEW_URL}
             target="_blank"
             rel="noopener noreferrer"
             className="reviews-write-btn"

@@ -16,7 +16,6 @@ export function ReviewsCarousel({ reviews }: ReviewsCarouselProps) {
     align: 'start',
     loop: true,
     skipSnaps: false,
-    containScroll: 'trimSnaps',
   });
 
   const [selectedIndex, setSelectedIndex] = useState(0);

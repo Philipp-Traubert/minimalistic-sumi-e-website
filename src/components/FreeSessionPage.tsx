@@ -18,7 +18,7 @@ const InlineReviewsCarousel = lazy(async () => {
   return { default: module.InlineReviewsCarousel };
 });
 
-export function PaidSessionPage() {
+export function FreeSessionPage() {
   const introShellRef = useRef<HTMLElement | null>(null);
   const [petalOffsetY, setPetalOffsetY] = useState(0);
 
@@ -48,10 +48,10 @@ export function PaidSessionPage() {
     '--petal-offset-y': `${petalOffsetY + window.innerHeight * 0.07}px`,
   } as CSSProperties;
 
-  const bookingUrl = 'https://cal.com/loslasszen/loslasszen-60-minuten-bei-mir';
+  const bookingUrl = 'https://cal.com/loslasszen/loslasszen-bei-philipp-kostenfreie-sitzung-60-min';
 
   const handleBookingClick = () => {
-    trackExternalLink(bookingUrl, 'QR Landing Page – Bezahlte Sitzung');
+    trackExternalLink(bookingUrl, 'QR Landing Page – Kostenfreie Sitzung');
   };
 
   return (
@@ -89,19 +89,17 @@ export function PaidSessionPage() {
               <div className="space-y-10">
                 <div>
                   <InkSplashHeading delay={0.2} className="mb-4">
-                    <h1 className="heading-xl">60 Minuten <br></br>
-                      loslasszen Körperarbeit in Eberswalde</h1>
-
-                    <p className="text-body leading-relaxed paid-session-subtitle">
-                      Raum für Ausrichtung, Entspannung und mehr Freiheit in Körper und Wesen.
-                    </p>
-                    <div className="separator" />
+                    <h1 className="heading-xl">60-minütige kostenfreie Kennenlern-Sitzung in Eberswalde</h1>
                   </InkSplashHeading>
+                  <p className="text-body leading-relaxed paid-session-subtitle">
+                    Raum für Ausrichtung, Entlastung und mehr Bewegungsfreiheit im Körper
+                  </p>
+                  <div className="separator" />
                 </div>
 
                 <SereneReveal delay={600} scrollDelay={100}>
                   <p className="text-body leading-relaxed">
-                    Für Menschen, die bereit sind loszulassen, was ihr Körper schon zu lange trägt. Termin online in unter 1 Minute reservieren.
+                    Für Menschen, die Philipps Körperarbeit kennenlernen möchten und offen dafür sind, im Anschluss ehrliches Feedback zu ihrer Erfahrung zu geben. Termin online in unter 1 Minute reservieren.
                   </p>
                 </SereneReveal>
 
@@ -124,8 +122,10 @@ export function PaidSessionPage() {
 
                   <SereneReveal delay={1050} scrollDelay={180}>
                     <div className="text-body space-y-4">
-                      <p>Diese bezahlte Einzelsitzung richtet sich an Sie, wenn Sie</p>
+                      <p>Diese kostenfreie Kennenlern-Sitzung richtet sich an Sie, wenn Sie</p>
+                      <br></br>
                       <ul className="pl-6 list-bullet">
+                        <li>meine Arbeit ohne finanzielles Risiko kennenlernen wollen.</li>
                         <li>seit neuestem oder schon lange Schmerzen haben.</li>
                         <li>mehr Kraft, Freiheit und Geschmeidigkeit in Ihrem Körper wünschen.</li>
                         <li>sich nach intensiver körperlicher Leistung wieder ausrichten und entspannen wollen.</li>
@@ -180,6 +180,25 @@ export function PaidSessionPage() {
                   </div>
                 </div>
 
+                <div className="space-y-6">
+                  <SereneReveal delay={1650} scrollDelay={310}>
+                    <h2 className="heading-lg">Was ich mir im Gegenzug wünsche</h2>
+                  </SereneReveal>
+
+                  <SereneReveal delay={1760} scrollDelay={340}>
+                    <div className="text-body space-y-4 paid-session-note-block">
+                      <p>Diese Kennenlern-Sitzung ist für Sie kostenfrei.</p>
+                      <p>Im Gegenzug bitte ich Sie um:</p>
+                      <ul className="pl-6 list-bullet">
+                        <li>ein ehrliches schriftliches Feedback zu Ihrer Erfahrung (einige Sätze genügen),</li>
+                        <li>die Erlaubnis, dieses Feedback ggf. auszugsweise und mit Initialen oder Vornamen und wenn Sie bereit sind mit Foto, als Erfahrungsbericht zu verwenden (Website, Flyer o. Ä.).</li>
+                      </ul>
+                      <p>Wenn Sie nach der Sitzung merken, dass Sie kein Testimonial geben möchten, ist das in Ordnung – die Sitzung bleibt für Sie kostenfrei. Ihre Rückmeldung ist eine Einladung, kein Zwang.</p>
+                      <p>Am meisten hilft auch eine ehrliche Bewertung auf Google und Facebook. Ich werde Sie nach der Sitzung darauf ansprechen.</p>
+                    </div>
+                  </SereneReveal>
+                </div>
+
                 <SereneReveal delay={1680} scrollDelay={315}>
                   <Suspense
                     fallback={
@@ -232,8 +251,8 @@ export function PaidSessionPage() {
                       <ul className="pl-6 list-bullet">
                         <li>Ort: Schillerstr. 3, 16225 Eberswalde</li>
                         <li>Dauer: 60 Minuten</li>
-                        <li>Honorar: 120 € pro Sitzung</li>
-                        <li>Zahlung: Onlinezahlung bei der Buchung</li>
+                        <li>Honorar: 0 € (kostenfreie Kennenlern-Sitzung gegen ehrliches Testimonial)</li>
+                        <li>Zahlung: entfällt</li>
                         <li>Umbuchung: Kostenfreie Umbuchung bis 24 Stunden vor dem Termin möglich.</li>
                       </ul>
                     </div>
@@ -264,27 +283,10 @@ export function PaidSessionPage() {
                       target="_blank"
                       onClick={handleBookingClick}
                     >
-                      Ihre persönliche Sitzung jetzt buchen
+                      Kostenfreie Sitzung jetzt buchen
                     </GradientButton>
                   </div>
                 </SereneReveal>
-
-                <div className="space-y-6">
-                  <SereneReveal delay={2600} scrollDelay={530}>
-                    <h2 className="heading-lg">Sie haben noch Fragen?</h2>
-                  </SereneReveal>
-
-                  <SereneReveal delay={2720} scrollDelay={560}>
-                    <div className="text-body space-y-4">
-                      <p>
-                        Sollten Sie sich immer noch fragen, ob das was für Sie ist, schreiben Sie mir gerne eine Mail an jetzt@loslasszen.de oder auf Telegram an @loslasszen mit Ihren Fragen.
-                      </p>
-                      <p>
-                        Ich antworte gerne mit meiner ehrlichen Einschätzung.
-                      </p>
-                    </div>
-                  </SereneReveal>
-                </div>
               </div>
             </GlassPanel>
           </div>

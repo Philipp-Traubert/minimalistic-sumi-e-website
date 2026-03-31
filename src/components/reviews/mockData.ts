@@ -1,6 +1,8 @@
 import type { Review } from './types';
 
-export const GOOGLE_BUSINESS_PROFILE_URL = 'https://www.google.com/maps/place/loslasszen+K%C3%B6rperarbeit/@52.8294855,13.7016767,12z/data=!3m1!4b1!4m6!3m5!1s0x65bc22e049d6f675:0xdce4e2f8eef8ffcc!8m2!3d52.8295141!4d13.7842476!16s%2Fg%2F11yqmkhv9t?entry=ttu&g_ep=EgoyMDI2MDMxOC4xIKXMDSoASAFQAw%3D%3D';
+export const GOOGLE_PLACE_ID = 'ChIJdfbWSeAivGURzP_47vji5Nw';
+export const GOOGLE_BUSINESS_PROFILE_URL = `https://search.google.com/local/reviews?placeid=${GOOGLE_PLACE_ID}`;
+export const GOOGLE_WRITE_REVIEW_URL = 'https://g.page/r/Ccz_-O744uTcEBM/review';
 
 export const STATIC_GOOGLE_REVIEWS: Review[] = [
   {
