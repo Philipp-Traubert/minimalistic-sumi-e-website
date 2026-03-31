@@ -697,6 +697,18 @@ body,
     transition: box-shadow 0.45s ease, border 0.45s ease;
 }
 
+@media (max-width: 1024px) {
+    .glass-panel {
+        background: rgba(250, 249, 246, 0.42);
+    }
+}
+
+@media (max-width: 767px) {
+    .glass-panel {
+        background: rgba(250, 249, 246, 0.5);
+    }
+}
+
 /* Feature detection fallback for no backdrop-filter support */
 @supports not ((-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))) {
     .glass-panel {
