@@ -699,13 +699,64 @@ body,
 
 @media (max-width: 1024px) {
     .glass-panel {
-        background: rgba(250, 249, 246, 0.42);
+        background: rgba(250, 249, 246, 0.36);
+    }
+
+    .glass-panel .heading-xl,
+    .glass-panel .heading-lg,
+    .glass-panel .heading-sm,
+    .glass-panel .text-body,
+    .glass-panel p,
+    .glass-panel li {
+        text-shadow:
+            0 0 18px rgba(250, 249, 246, 0.68),
+            0 0 38px rgba(250, 249, 246, 0.34);
+    }
+
+    .glass-panel .text-body,
+    .glass-panel p,
+    .glass-panel li {
+        line-height: 1.68;
+        letter-spacing: 0.005em;
+    }
+
+    .glass-panel .heading-lg,
+    .glass-panel .heading-sm {
+        letter-spacing: 0.01em;
     }
 }
 
 @media (max-width: 767px) {
     .glass-panel {
-        background: rgba(250, 249, 246, 0.5);
+        background: rgba(250, 249, 246, 0.4);
+    }
+
+    .glass-panel .heading-xl,
+    .glass-panel .heading-lg,
+    .glass-panel .heading-sm,
+    .glass-panel .text-body,
+    .glass-panel p,
+    .glass-panel li {
+        text-shadow:
+            0 0 22px rgba(250, 249, 246, 0.76),
+            0 0 44px rgba(250, 249, 246, 0.38);
+    }
+
+    .glass-panel .text-body,
+    .glass-panel p,
+    .glass-panel li {
+        line-height: 1.72;
+        letter-spacing: 0.006em;
+        font-weight: 450;
+    }
+
+    .glass-panel .heading-xl {
+        line-height: 1.12;
+    }
+
+    .glass-panel .heading-lg,
+    .glass-panel .heading-sm {
+        letter-spacing: 0.012em;
     }
 }
 
