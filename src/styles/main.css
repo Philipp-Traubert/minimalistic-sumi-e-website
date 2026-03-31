@@ -593,6 +593,20 @@ body,
     pointer-events: none;
 }
 
+.cta-copy-short {
+    display: none;
+}
+
+@media (max-width: 430px) {
+    .cta-copy-long {
+        display: none;
+    }
+
+    .cta-copy-short {
+        display: inline;
+    }
+}
+
 .gradient-button-highlight {
     position: absolute;
     top: 0;

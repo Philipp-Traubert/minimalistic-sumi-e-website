@@ -113,7 +113,8 @@ export function PaidSessionPage() {
                         target="_blank"
                         onClick={handleBookingClick}
                       >
-                        In Unter 1 Minute Online Platz Sichern
+                        <span className="cta-copy cta-copy-long">In Unter 1 Minute Online Platz Sichern</span>
+                        <span className="cta-copy cta-copy-short">Platz Jetzt Online Sichern</span>
                       </GradientButton>
                     </div>
                   </SereneReveal>
