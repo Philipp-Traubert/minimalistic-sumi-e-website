@@ -238,7 +238,7 @@ export default function App() {
                   target="_blank"
                   onClick={handleBookingClick}
                 >
-                  Buchen Sie jetzt Ihre Sitzung
+                  Buchen Sie Ihre Sitzung Direkt Online
                 </GradientButton>
               </div>
             </div>

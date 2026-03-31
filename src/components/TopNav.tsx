@@ -112,7 +112,7 @@ export function TopNav() {
                     href="https://cal.com/loslasszen"
                     target="_blank"
                 >
-                    Jetzt Buchen
+                    Direkt Buchen
                 </GradientButton>
             </div>
         </nav>
