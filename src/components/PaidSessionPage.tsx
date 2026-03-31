@@ -265,7 +265,7 @@ export function PaidSessionPage() {
                       target="_blank"
                       onClick={handleBookingClick}
                     >
-                      Ihre persönliche Sitzung jetzt buchen
+                      Ihre Persönliche Sitzung Online Buchen
                     </GradientButton>
                   </div>
                 </SereneReveal>
