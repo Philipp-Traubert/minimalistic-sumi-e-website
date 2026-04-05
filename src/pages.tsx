@@ -1,10 +1,10 @@
 import { PaidSessionPage as PaidSessionDesignPage } from './components/PaidSessionPage';
-import { FreeSessionPage as FreeSessionDesignPage } from './components/FreeSessionPage';
+import { FoundingOfferPage as FoundingOfferDesignPage } from './components/FoundingOfferPage';
 
 export function PaidSessionPage() {
   return <PaidSessionDesignPage />;
 }
 
-export function FreeSessionPage() {
-  return <FreeSessionDesignPage />;
+export function KennenlernenPage() {
+  return <FoundingOfferDesignPage />;
 }
