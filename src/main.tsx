@@ -11,6 +11,10 @@ if (path === '/kostenlos') {
   window.location.replace('/kennenlernen');
 }
 
+if (path === '/visitenkarte') {
+  window.location.replace('/kennenlernen?utm_source=visitenkarte&utm_medium=qr&utm_campaign=visitenkarte&utm_content=visitenkarte');
+}
+
 const flyerMatch = path.match(/^\/f\/(\d{1,4})$/);
 if (flyerMatch) {
   const code = flyerMatch[1].padStart(3, '0');
