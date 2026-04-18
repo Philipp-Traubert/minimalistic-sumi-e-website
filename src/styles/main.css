@@ -244,12 +244,16 @@ body {
     line-height: 1.5;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
 }
 
 html,
 body,
 #root {
     background-color: var(--bg-color);
+    width: 100%;
+    max-width: 100%;
+    overflow-x: clip;
 }
 
 /* Layout */
@@ -552,6 +556,15 @@ body,
     }
 
     .top-nav .gradient-button-content {
+        width: 100%;
+        text-align: center;
+    }
+
+    .gradient-button {
+        text-align: center;
+    }
+
+    .gradient-button-content {
         width: 100%;
         text-align: center;
     }
