@@ -131,11 +131,11 @@ export function FoundingOfferPage() {
                       <p>Diese Kennenlern-Sitzung richtet sich an dich, wenn du</p>
                       <br></br>
                       <ul className="pl-6 list-bullet">
-                        <li>meine Arbeit in der Gründung kennenlernen & unterstützen wollen.</li>
-                        <li>seit neuestem oder schon lange Schmerzen haben.</li>
+                        <li>meine Arbeit in der Gründung kennenlernen & unterstützen willst.</li>
+                        <li>seit neuestem oder schon lange Schmerzen hast.</li>
                         <li>mehr Kraft, Freiheit und Geschmeidigkeit in deinem Körper wünschst.</li>
-                        <li>sich nach intensiver körperlicher Leistung wieder ausrichten und entspannen wollen.</li>
-                        <li>schon vieles probiert haben und manche Sachen einfach nicht loswerden - bei mir selbst war es diese Arbeit, die endlich geholfen hat.</li>
+                        <li>dich nach intensiver körperlicher Leistung wieder ausrichten und entspannen möchtest.</li>
+                        <li>schon vieles probiert hast und manche Sachen einfach nicht loswerden konntest - bei mir selbst war es diese Arbeit, die endlich geholfen hat.</li>
                         <li>merkst, dass sich Ereignisse in deinem Körper abgelagert haben, die du auf somatische Art angehen möchtest.</li>
                       </ul>
                       <br></br>
@@ -199,8 +199,8 @@ export function FoundingOfferPage() {
                         <li>ein ehrliches schriftliches Feedback zu deiner Erfahrung (einige Sätze genügen),</li>
                         <li>die Erlaubnis, dieses Feedback ggf. auszugsweise und mit Initialen oder Vornamen und wenn du bereit bist mit Foto, als Erfahrungsbericht zu verwenden (Website, Flyer o. Ä.).</li>
                       </ul>
-                      <p>Wenn du nach der Sitzung merkst, dass du kein Testimonial geben möchtest, ist das in Ordnung – die Sitzung bleibt für dich zum halben Preis. Deine Rückmeldung ist eine Einladung, kein Zwang.</p>
-                      <p>Am meisten hilft auch eine ehrliche Bewertung auf Google und Facebook. Ich werde dich nach der Sitzung darauf ansprechen.</p>
+                      <p>Wenn du nach der Sitzung merkst, dass du kein Testimonial geben möchtest, ist das in Ordnung – die Sitzung bleibt für dich zum halben Preis. Deine Rückmeldung ist eingeladen, nicht erzwungen.</p>
+                      <p>Am meisten hilft eine ehrliche Bewertung auf Google und Facebook. Ich werde dich nach der Sitzung darauf ansprechen.</p>
                     </div>
                   </SereneReveal>
                 </div>
