@@ -85,7 +85,7 @@ export default function App() {
                 <div>
                   <InkSplashHeading delay={0.2} className="mb-4">
                     <h1 className="heading-xl">
-                      Lassen Sie endlich los, was ihr Körper schon zu lange trägt.
+                      Lass endlich los, was dein Körper schon zu lange trägt.
                     </h1>
                   </InkSplashHeading>
                   <div className="separator" />
@@ -115,7 +115,7 @@ export default function App() {
                 <div className="space-y-8 mt-16">
                   <SereneReveal delay={1400} scrollDelay={100}>
                     <h2 className="heading-lg">
-                      Was Sie in einer Sitzung erwartet
+                      Was dich in einer Sitzung erwartet
                     </h2>
                   </SereneReveal>
 
@@ -124,8 +124,8 @@ export default function App() {
                       <div>
                         <h3 className="heading-sm">Kurzes Ankommen und Einchecken</h3>
                         <p className="leading-relaxed">
-                          Was beschäftigt Sie heute und wo soll meine Aufmerksamkeit hingehen?
-                          Was sind länger anhaltende Themen und Muster Ihres Körpers?
+                          Was beschäftigt dich heute und wo soll meine Aufmerksamkeit hingehen?
+                          Was sind länger anhaltende Themen und Muster deines Körpers?
                         </p>
                       </div>
                     </SereneReveal>
@@ -141,18 +141,18 @@ export default function App() {
 
                     <SereneReveal delay={300} scrollDelay={150}>
                       <div>
-                        <h3 className="heading-sm">Ihre Individuell angepasste Sitzung</h3>
+                        <h3 className="heading-sm">Deine individuell angepasste Sitzung</h3>
                         <p className="leading-relaxed">
-                          Den Großteil der Sitzung arbeiten wir entsprechend Ihrer präsenten Beschwerden oder Schmerzen.
+                          Den Großteil der Sitzung arbeiten wir entsprechend deiner präsenten Beschwerden oder Schmerzen.
                         </p>
                       </div>
                     </SereneReveal>
 
                     <SereneReveal delay={400} scrollDelay={200}>
                       <div>
-                        <h3 className="heading-sm">Integration in Ihren Körper</h3>
+                        <h3 className="heading-sm">Integration in deinen Körper</h3>
                         <p className="leading-relaxed">
-                          Zum Abschluss richten wir Ihren Körper neu aus, um die Arbeit nachhaltig in Ihr System zu integrieren.
+                          Zum Abschluss richten wir deinen Körper neu aus, um die Arbeit nachhaltig in dein System zu integrieren.
                         </p>
                       </div>
                     </SereneReveal>
@@ -162,7 +162,7 @@ export default function App() {
                 <SereneReveal delay={560} scrollDelay={130}>
                   <div className="cta-section cta-section-secondary cta-section-no-divider">
                     <GradientButton href="/sitzung">
-                      Neugierig? Hier erfahren Sie mehr
+                      Neugierig? Hier erfährst du mehr
                     </GradientButton>
                   </div>
                 </SereneReveal>
@@ -170,13 +170,13 @@ export default function App() {
                 <SereneReveal delay={500} scrollDelay={100}>
                   <div className="cta-section">
                     <h3 className="heading-sm mb-6">
-                      Fangen Sie jetzt an loszulasszen
+                      Fang jetzt an loszulasszen
                     </h3>
                     <div className="text-body mb-8">
                       <ul className="pl-6 list-bullet">
-                        <li>Jede Woche biete ich 2 Kennenlern-Sitzungen im Austausch gegen ein Testimonial mit Foto für meine Webseite und Flyer an.</li>
-                        <li>Zur Gründung gibt es 30 Hausbesuche ohne Aufpreis.</li>
-                        <li>Alle Angebote können Sie in 60 Sekunden direkt online buchen.</li>
+                        <li>Als Gründungsangebot gibt es für die ersten 30 Kunden jeweils eine Kennenlern-Sitzung pro Person zum halben Preis von 60 €.</li>
+                        <li>Alle Angebote kannst du in 60 Sekunden direkt online buchen.</li>
+                        <li>Aufgrund der neuen Vaterschaft biete ich, wenn möglich, Hausbesuche im nahen Umfeld ohne Aufpreis an.</li>
                       </ul>
                     </div>
                     <GradientButton
@@ -217,9 +217,9 @@ export default function App() {
                 <p>
                   In einer Phase großen Wandels und starker therapieresistenter Schmerzen, fing ich wieder an mich intensiv mit Körperarbeit zu beschäftigen.
                   Was bei mir nach vielen Monaten und verschiedenen Therapieansätzen endlich Linderung brachte, ist eine Modalität, die ihre Basis in der Kultivierung des Practicioners durch Meditation versteht.
-                  Sie kombiniert Elemente der Arbeit von Ida Rolf, die den Körper wieder ausrichtet,
+                  Diese Modalität kombiniert Elemente der Arbeit von Ida Rolf, die den Körper wieder ausrichtet,
                   der bewussten Rekalibrierung des Nervensystems und der Selbsterfahrung des Körpers nach Moshe Feldenkrais, sowie intensive Triggerpunktarbeit.
-                  Das ist die Art der Körperarbeit, die Sie bei mir erfahren.<br></br><br></br>
+                  Das ist die Art der Körperarbeit, die du bei mir erfährst.<br></br><br></br>
                   Für die verbundene und liebevolle Art, mit der mir mein Körpertherapeut Martin damals begegnete und mich behandelte, werde ich für immer dankbar sein und wende sie als Maßstab für meine Begegnungen mit Klient:innen an.
                 </p><br></br>
                 <p>
@@ -228,10 +228,10 @@ export default function App() {
                   <br></br><br>
                   </br>
                   Der Lernweg und das kultivieren meiner Selbst hört nie auf.
-                  Die zugrundeliegende Annahme meiner Arbeit ist, dass Sie die einzige Person auf der Welt sind, die Ihren Körper heilen können. Meine Rolle dabei ist, Sie nach bestem Wissen und Gewissen zu unterstützen.
+                  Die zugrundeliegende Annahme meiner Arbeit ist, dass du die einzige Person auf der Welt bist, die deinen Körper heilen kann. Meine Rolle dabei ist, dich nach bestem Wissen und Gewissen zu unterstützen.
                 </p><br></br>
                 <p>
-                  Ich freue mich darauf, mit Ihnen zu arbeiten und sie auf Ihrem Weg begleiten zu dürfen.
+                  Ich freue mich darauf, mit dir zu arbeiten und dich auf deinem Weg begleiten zu dürfen.
                 </p>
                 <br></br>
 
@@ -243,7 +243,7 @@ export default function App() {
                   target="_blank"
                   onClick={handleBookingClick}
                 >
-                  Buchen Sie Ihre Sitzung Direkt Online
+                  Buche deine Sitzung direkt online
                 </GradientButton>
               </div>
             </div>

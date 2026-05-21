@@ -128,18 +128,18 @@ export function FoundingOfferPage() {
 
                   <SereneReveal delay={1050} scrollDelay={180}>
                     <div className="text-body space-y-4">
-                      <p>Diese Kennenlern-Sitzung richtet sich an Sie, wenn Sie</p>
+                      <p>Diese Kennenlern-Sitzung richtet sich an dich, wenn du</p>
                       <br></br>
                       <ul className="pl-6 list-bullet">
                         <li>meine Arbeit in der Gründung kennenlernen & unterstützen wollen.</li>
                         <li>seit neuestem oder schon lange Schmerzen haben.</li>
-                        <li>mehr Kraft, Freiheit und Geschmeidigkeit in Ihrem Körper wünschen.</li>
+                        <li>mehr Kraft, Freiheit und Geschmeidigkeit in deinem Körper wünschst.</li>
                         <li>sich nach intensiver körperlicher Leistung wieder ausrichten und entspannen wollen.</li>
                         <li>schon vieles probiert haben und manche Sachen einfach nicht loswerden - bei mir selbst war es diese Arbeit, die endlich geholfen hat.</li>
-                        <li>merken, dass sich Ereignisse in ihrem Körper abgelagert haben, die Sie auf somatische Art angehen möchten.</li>
+                        <li>merkst, dass sich Ereignisse in deinem Körper abgelagert haben, die du auf somatische Art angehen möchtest.</li>
                       </ul>
                       <br></br>
-                      <p>Wenn Sie sich hier wiedererkennen, ist diese 60-minütige Sitzung für Sie gedacht.
+                      <p>Wenn du dich hier wiedererkennst, ist diese 60-minütige Sitzung für dich gedacht.
 
                       </p>
                     </div>
@@ -155,7 +155,7 @@ export function FoundingOfferPage() {
                     <SereneReveal delay={1320} scrollDelay={240}>
                       <div>
                         <h3 className="heading-sm">1. Ankommen &amp; Gespräch (5 - 10 Min.)</h3>
-                        <p>Kurzes Check-in zu Ihrem aktuellen Zustand, zum Ankommen und für Ihre Wünsche.</p>
+                        <p>Kurzes Check-in zu deinem aktuellen Zustand, zum Ankommen und für deine Wünsche.</p>
 
                       </div>
                     </SereneReveal>
@@ -165,10 +165,10 @@ export function FoundingOfferPage() {
                         <h3 className="heading-sm">2. Individuelle Körperarbeit (ca. 45 Min.)</h3>
                         <p>
                           Jede Sitzung beginnt und endet mit Nackenarbeit. Ein entspannter Nacken entspannt den ganzen Körper.
-                          In diesen Momenten können Sie weiter ankommen, loslassen und sich in genau diesem Moment wiederfinden und mit ihrem Körper verbinden.
+                          In diesen Momenten kannst du weiter ankommen, loslassen und dich in genau diesem Moment wiederfinden und mit deinem Körper verbinden.
 
-                          Daraf folgt direkt Ihre Individuell angepasste Sitzung.
-                          Den Großteil der Sitzung arbeiten wir entsprechend Ihrer präsenten Beschwerden oder Schmerzen. Sie sind stets in Kontrolle darüber,
+                          Darauf folgt direkt deine individuell angepasste Sitzung.
+                          Den Großteil der Sitzung arbeiten wir entsprechend deiner präsenten Beschwerden oder Schmerzen. Du bist stets in Kontrolle darüber,
                           wie intensiv die Arbeit an diesem Tag wird.
                         </p>
                       </div>
@@ -178,8 +178,8 @@ export function FoundingOfferPage() {
                       <div>
                         <h3 className="heading-sm">3. Ausrichtung &amp; Integration (ca. 10 Min.)</h3>
                         <p>
-                          Ausrichtung und Erdung nach der tiefen Arbeit. Manchmal werde ich Ihnen eine Übung für zu Hause mitgeben. Immer werde ich darauf achten, dass
-                          Sie nach der Arbeit ausgeglichen und geerdet sind.
+                          Ausrichtung und Erdung nach der tiefen Arbeit. Manchmal werde ich dir eine Übung für zu Hause mitgeben. Immer werde ich darauf achten, dass
+                          du nach der Arbeit ausgeglichen und geerdet bist.
                         </p>
                       </div>
                     </SereneReveal>
@@ -188,19 +188,19 @@ export function FoundingOfferPage() {
 
                 <div className="space-y-6">
                   <SereneReveal delay={1650} scrollDelay={310}>
-                    <h2 className="heading-lg">Worum ich Sie im Gegenzug bitte</h2>
+                    <h2 className="heading-lg">Worum ich dich im Gegenzug bitte</h2>
                   </SereneReveal>
 
                   <SereneReveal delay={1760} scrollDelay={340}>
                     <div className="text-body space-y-4 paid-session-note-block">
-                      <p>Diese Kennenlern-Sitzung ist für Sie zum halben Preis.</p>
-                      <p>Im Gegenzug bitte ich Sie um:</p>
+                      <p>Diese Kennenlern-Sitzung ist für dich zum halben Preis.</p>
+                      <p>Im Gegenzug bitte ich dich um:</p>
                       <ul className="pl-6 list-bullet">
-                        <li>ein ehrliches schriftliches Feedback zu Ihrer Erfahrung (einige Sätze genügen),</li>
-                        <li>die Erlaubnis, dieses Feedback ggf. auszugsweise und mit Initialen oder Vornamen und wenn Sie bereit sind mit Foto, als Erfahrungsbericht zu verwenden (Website, Flyer o. Ä.).</li>
+                        <li>ein ehrliches schriftliches Feedback zu deiner Erfahrung (einige Sätze genügen),</li>
+                        <li>die Erlaubnis, dieses Feedback ggf. auszugsweise und mit Initialen oder Vornamen und wenn du bereit bist mit Foto, als Erfahrungsbericht zu verwenden (Website, Flyer o. Ä.).</li>
                       </ul>
-                      <p>Wenn Sie nach der Sitzung merken, dass Sie kein Testimonial geben möchten, ist das in Ordnung – die Sitzung bleibt für Sie zum halben Preis. Ihre Rückmeldung ist eine Einladung, kein Zwang.</p>
-                      <p>Am meisten hilft auch eine ehrliche Bewertung auf Google und Facebook. Ich werde Sie nach der Sitzung darauf ansprechen.</p>
+                      <p>Wenn du nach der Sitzung merkst, dass du kein Testimonial geben möchtest, ist das in Ordnung – die Sitzung bleibt für dich zum halben Preis. Deine Rückmeldung ist eine Einladung, kein Zwang.</p>
+                      <p>Am meisten hilft auch eine ehrliche Bewertung auf Google und Facebook. Ich werde dich nach der Sitzung darauf ansprechen.</p>
                     </div>
                   </SereneReveal>
                 </div>
@@ -240,8 +240,8 @@ export function FoundingOfferPage() {
                       <p>
                         Meine Arbeit ersetzt keine ärztliche oder psychotherapeutische Behandlung und
                         ich kann keine bestimmten Wirkungen oder Heilerfolge zusichern.
-                        Lediglich Sie selbst vermögen es Ihren Körper zu heilen und Ihre Schmerzen loszulassen.
-                        Dabei unterstütze ich Sie gerne durch den Raum dafür, angeleitete Atmung in wichtigen Momenten und die Arbeit an Ihrem Körper.
+                        Nur du selbst kannst deinen Körper heilen und deine Schmerzen loslassen.
+                        Dabei unterstütze ich dich gerne durch den Raum dafür, angeleitete Atmung in wichtigen Momenten und die Arbeit an deinem Körper.
                       </p>
                     </div>
                   </SereneReveal>

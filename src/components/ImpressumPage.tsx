@@ -88,7 +88,7 @@ export function ImpressumPage() {
                                                 https://ec.europa.eu/consumers/odr/
                                             </a>.
                                             <br />
-                                            Unsere E-Mail-Adresse finden Sie oben im Impressum.
+                                            Unsere E-Mail-Adresse findest du oben im Impressum.
                                         </p>
                                     </section>
 

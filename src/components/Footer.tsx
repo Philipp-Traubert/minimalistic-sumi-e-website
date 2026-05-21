@@ -16,7 +16,7 @@ export function Footer() {
                 <div className="footer-disclaimer">
                     <p className="footer-text">
                         <strong>Medizinischer Hinweis:</strong> Die angebotenen Leistungen ersetzen keine ärztliche Behandlung oder Therapie.
-                        Bei gesundheitlichen Beschwerden konsultieren Sie bitte einen Arzt.
+                        Bei gesundheitlichen Beschwerden konsultiere bitte einen Arzt.
                     </p>
                 </div>
 

@@ -433,7 +433,7 @@ export const handler: Handler = async (event) => {
 Recommended placement in [`App.tsx`](src/App.tsx):
 
 ```typescript
-// After "Was Sie in einer Sitzung erwartet" section, before CTA
+// After "Was dich in einer Sitzung erwartet" section, before CTA
 
 <div className="space-y-8 mt-16">
   <SereneReveal delay={100} scrollDelay={50}>

@@ -130,16 +130,16 @@ export function PaidSessionPage() {
 
                   <SereneReveal delay={1050} scrollDelay={180}>
                     <div className="text-body space-y-4">
-                      <p>Diese bezahlte Einzelsitzung richtet sich an Sie, wenn Sie</p>
+                      <p>Diese bezahlte Einzelsitzung richtet sich an dich, wenn du</p>
                       <ul className="pl-6 list-bullet">
                         <li>seit neuestem oder schon lange Schmerzen haben.</li>
-                        <li>mehr Kraft, Freiheit und Geschmeidigkeit in Ihrem Körper wünschen.</li>
+                        <li>mehr Kraft, Freiheit und Geschmeidigkeit in deinem Körper wünschst.</li>
                         <li>sich nach intensiver körperlicher Leistung wieder ausrichten und entspannen wollen.</li>
                         <li>schon vieles probiert haben und manche Sachen einfach nicht loswerden - bei mir selbst war es diese Arbeit, die endlich geholfen hat.</li>
-                        <li>merken, dass sich Ereignisse in ihrem Körper abgelagert haben, die Sie auf somatische Art angehen möchten.</li>
+                        <li>merkst, dass sich Ereignisse in deinem Körper abgelagert haben, die du auf somatische Art angehen möchtest.</li>
                       </ul>
                       <br></br>
-                      <p>Wenn Sie sich hier wiedererkennen, ist diese 60-minütige Sitzung für Sie gedacht.
+                      <p>Wenn du dich hier wiedererkennst, ist diese 60-minütige Sitzung für dich gedacht.
 
                       </p>
                     </div>
@@ -155,7 +155,7 @@ export function PaidSessionPage() {
                     <SereneReveal delay={1320} scrollDelay={240}>
                       <div>
                         <h3 className="heading-sm">1. Ankommen &amp; Gespräch (5 - 10 Min.)</h3>
-                        <p>Kurzes Check-in zu Ihrem aktuellen Zustand, zum Ankommen und für Ihre Wünsche.</p>
+                        <p>Kurzes Check-in zu deinem aktuellen Zustand, zum Ankommen und für deine Wünsche.</p>
 
                       </div>
                     </SereneReveal>
@@ -165,10 +165,10 @@ export function PaidSessionPage() {
                         <h3 className="heading-sm">2. Individuelle Körperarbeit (ca. 45 Min.)</h3>
                         <p>
                           Jede Sitzung beginnt und endet mit Nackenarbeit. Ein entspannter Nacken entspannt den ganzen Körper.
-                          In diesen Momenten können Sie weiter ankommen, loslassen und sich in genau diesem Moment wiederfinden und mit ihrem Körper verbinden.
+                          In diesen Momenten kannst du weiter ankommen, loslassen und dich in genau diesem Moment wiederfinden und mit deinem Körper verbinden.
 
-                          Daraf folgt direkt Ihre Individuell angepasste Sitzung.
-                          Den Großteil der Sitzung arbeiten wir entsprechend Ihrer präsenten Beschwerden oder Schmerzen. Sie sind stets in Kontrolle darüber,
+                          Darauf folgt direkt deine individuell angepasste Sitzung.
+                          Den Großteil der Sitzung arbeiten wir entsprechend deiner präsenten Beschwerden oder Schmerzen. Du bist stets in Kontrolle darüber,
                           wie intensiv die Arbeit an diesem Tag wird.
                         </p>
                       </div>
@@ -178,8 +178,8 @@ export function PaidSessionPage() {
                       <div>
                         <h3 className="heading-sm">3. Ausrichtung &amp; Integration (ca. 10 Min.)</h3>
                         <p>
-                          Ausrichtung und Erdung nach der tiefen Arbeit. Manchmal werde ich Ihnen eine Übung für zu Hause mitgeben. Immer werde ich darauf achten, dass
-                          Sie nach der Arbeit ausgeglichen und geerdet sind.
+                          Ausrichtung und Erdung nach der tiefen Arbeit. Manchmal werde ich dir eine Übung für zu Hause mitgeben. Immer werde ich darauf achten, dass
+                          du nach der Arbeit ausgeglichen und geerdet bist.
                         </p>
                       </div>
                     </SereneReveal>
@@ -221,8 +221,8 @@ export function PaidSessionPage() {
                       <p>
                         Meine Arbeit ersetzt keine ärztliche oder psychotherapeutische Behandlung und
                         ich kann keine bestimmten Wirkungen oder Heilerfolge zusichern.
-                        Lediglich Sie selbst vermögen es Ihren Körper zu heilen und Ihre Schmerzen loszulassen.
-                        Dabei unterstütze ich Sie gerne durch den Raum dafür, angeleitete Atmung in wichtigen Momenten und die Arbeit an Ihrem Körper.
+                        Nur du selbst kannst deinen Körper heilen und deine Schmerzen loslassen.
+                        Dabei unterstütze ich dich gerne durch den Raum dafür, angeleitete Atmung in wichtigen Momenten und die Arbeit an deinem Körper.
                       </p>
                     </div>
                   </SereneReveal>
@@ -253,20 +253,20 @@ export function PaidSessionPage() {
                       target="_blank"
                       onClick={handleBookingClick}
                     >
-                      Ihre Persönliche Sitzung Online Buchen
+                      Deine persönliche Sitzung online buchen
                     </GradientButton>
                   </div>
                 </SereneReveal>
 
                 <div className="space-y-6">
                   <SereneReveal delay={2600} scrollDelay={530}>
-                    <h2 className="heading-lg">Sie haben noch Fragen?</h2>
+                    <h2 className="heading-lg">Du hast noch Fragen?</h2>
                   </SereneReveal>
 
                   <SereneReveal delay={2720} scrollDelay={560}>
                     <div className="text-body space-y-4">
                       <p>
-                        Sollten Sie sich immer noch fragen, ob das was für Sie ist, schreiben Sie mir gerne eine Mail an jetzt@loslasszen.de oder auf Telegram an @loslasszen mit Ihren Fragen.
+                        Solltest du dich immer noch fragen, ob das was für dich ist, schreib mir gerne eine Mail an jetzt@loslasszen.de oder auf Telegram an @loslasszen mit deinen Fragen.
                       </p>
                       <p>
                         Ich antworte gerne mit meiner ehrlichen Einschätzung.
