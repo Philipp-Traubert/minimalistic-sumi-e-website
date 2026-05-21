@@ -132,10 +132,10 @@ export function PaidSessionPage() {
                     <div className="text-body space-y-4">
                       <p>Diese bezahlte Einzelsitzung richtet sich an dich, wenn du</p>
                       <ul className="pl-6 list-bullet">
-                        <li>seit neuestem oder schon lange Schmerzen haben.</li>
+                        <li>seit neuestem oder schon lange Schmerzen hast.</li>
                         <li>mehr Kraft, Freiheit und Geschmeidigkeit in deinem Körper wünschst.</li>
-                        <li>sich nach intensiver körperlicher Leistung wieder ausrichten und entspannen wollen.</li>
-                        <li>schon vieles probiert haben und manche Sachen einfach nicht loswerden - bei mir selbst war es diese Arbeit, die endlich geholfen hat.</li>
+                        <li>dich nach intensiver körperlicher Leistung wieder ausrichten und entspannen möchtest.</li>
+                        <li>schon vieles probiert hast und manche Sachen einfach nicht loswerden konntest - bei mir selbst war es diese Arbeit, die endlich geholfen hat.</li>
                         <li>merkst, dass sich Ereignisse in deinem Körper abgelagert haben, die du auf somatische Art angehen möchtest.</li>
                       </ul>
                       <br></br>
@@ -239,7 +239,7 @@ export function PaidSessionPage() {
                         <li>Ort: Schillerstr. 3, 16225 Eberswalde</li>
                         <li>Dauer: 60 Minuten</li>
                         <li>Honorar: 120 € pro Sitzung</li>
-                        <li>Zahlung: Onlinezahlung bei der Buchung</li>
+                        <li>Zahlung: Anzahlung bei der Buchung, der Restbetrag vor Ort.</li>
                         <li>Umbuchung: Kostenfreie Umbuchung bis 24 Stunden vor dem Termin möglich.</li>
                       </ul>
                     </div>
