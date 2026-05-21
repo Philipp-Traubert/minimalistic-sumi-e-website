@@ -9,6 +9,7 @@ import { GradientButton } from './GradientButton';
 import { SumiEImage } from './SumiEImage';
 import { FallingBlossoms } from './FallingBlossoms';
 import { Footer } from './Footer';
+import { BabyNotice } from './BabyNotice';
 import { trackExternalLink } from '../utils/matomo';
 import sumiBranch from '../assets/branch-transparent.webp';
 import paperTexture from '../assets/b67594e9b3c439245fdadadaacf25076d0420eda Large.jpeg';
@@ -101,6 +102,10 @@ export function FreeSessionPage() {
                   <p className="text-body leading-relaxed">
                     Für Menschen, die Philipps Körperarbeit kennenlernen möchten und offen dafür sind, im Anschluss ehrliches Feedback zu ihrer Erfahrung zu geben. Termin online in unter 1 Minute reservieren.
                   </p>
+                </SereneReveal>
+
+                <SereneReveal delay={680} scrollDelay={110}>
+                  <BabyNotice />
                 </SereneReveal>
 
                 <div className="space-y-6">

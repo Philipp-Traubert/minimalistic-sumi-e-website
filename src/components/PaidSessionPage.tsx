@@ -9,6 +9,7 @@ import { GradientButton } from './GradientButton';
 import { SumiEImage } from './SumiEImage';
 import { FallingBlossoms } from './FallingBlossoms';
 import { Footer } from './Footer';
+import { BabyNotice } from './BabyNotice';
 import { trackExternalLink } from '../utils/matomo';
 import sumiBranch from '../assets/branch-transparent.webp';
 import paperTexture from '../assets/b67594e9b3c439245fdadadaacf25076d0420eda Large.jpeg';
@@ -87,6 +88,10 @@ export function PaidSessionPage() {
           <div className="content-section intro-content-section">
             <GlassPanel className="glass-panel-custom paid-session-page-panel">
               <div className="space-y-10">
+                <SereneReveal delay={0.1} scrollDelay={80} className="paid-session-pre-title-notice">
+                  <BabyNotice />
+                </SereneReveal>
+
                 <div>
                   <InkSplashHeading delay={0.2} className="mb-4">
                     <h1 className="heading-xl">60 Minuten <br></br>

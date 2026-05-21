@@ -1102,6 +1102,19 @@ body,
     margin-bottom: var(--spacing-2);
 }
 
+.baby-notice {
+    border-left: 3px solid rgba(111, 78, 55, 0.55);
+}
+
+.baby-notice p {
+    margin: 0;
+}
+
+.baby-notice strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
 /* Alternative List Style Options */
 .list-circle {
     list-style-type: circle;
@@ -1358,6 +1371,10 @@ body,
     font-size: 1.15rem;
     opacity: 0.95;
     max-width: 42rem;
+}
+
+.paid-session-pre-title-notice+div {
+    margin-top: var(--spacing-12);
 }
 
 .paid-session-inline-cta {
